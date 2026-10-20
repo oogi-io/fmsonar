@@ -8,9 +8,10 @@ Never hand-parse DDR XML - build the SQLite index and query it.
 
 ## 1. Locate or build the database
 
-The database lives next to the export: `fm-ddr build <source>` writes
-`<source>.db` beside it, in the project (a `Summary.xml` build would be
-`Summary.db`: pass `-o <same folder>/<solution>.db` to name it). Use `-o` for
+The database lives with the export: `fm-ddr build <DDR folder>` reads the folder's
+`Summary.xml` (else its `*_fmp12.xml` files, else its one export) and writes
+`<folder>/<folder name>.db`; a single file builds to `<file>.db` beside it.
+Use `-o` for
 another folder only when the user asks. `fm-ddr list` (current folder) or `fm-ddr list <folder>` shows what
 exists (label, build time, parser version, staleness) - run it first when
 unsure. Run `build` on the source; it skips an unchanged one in under a second
@@ -42,7 +43,7 @@ index; COVERAGE.md "SaXML next to the DDR" lists the expected differences
 
 ```bash
 # multi-file solutions: ALWAYS build from Summary.xml so cross-file references resolve
-fm-ddr build "/path/to/DDR/Summary.xml" -o "/path/to/DDR/<solution>.db" --label "<solution> <date>"
+fm-ddr build "/path/to/DDR" --label "<solution> <date>"     # writes /path/to/DDR/DDR.db
 # single-file solutions: point at the *_fmp12.xml directly
 ```
 

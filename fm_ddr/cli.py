@@ -40,9 +40,41 @@ def _print_table(cols, rows, limit=200, full=False):
         print(f"... {len(rows) - limit} more rows")
 
 
+def _sources_in_folder(folder):
+    """What `build <folder>` reads: the folder's Summary.xml, else its *_fmp12.xml
+    files, else its one .xml (a Save a Copy as XML export)."""
+    names = sorted(os.listdir(folder))
+    if "Summary.xml" in names:
+        return [os.path.join(folder, "Summary.xml")]
+    ddrs = [n for n in names if n.endswith("_fmp12.xml")]
+    if ddrs:
+        return [os.path.join(folder, n) for n in ddrs]
+    xmls = [n for n in names if n.lower().endswith(".xml")]
+    if len(xmls) == 1:
+        return [os.path.join(folder, xmls[0])]
+    print(f"error: {folder} is a folder that holds no Summary.xml, no *_fmp12.xml and "
+          "not exactly one .xml export; name the file to build", file=sys.stderr)
+    sys.exit(1)
+
+
+def _default_out(sources):
+    """Where a build lands without -o: inside the DDR folder, named after it, when
+    the source is a folder or a Summary.xml; next to a single file otherwise."""
+    first = os.path.abspath(sources[0])
+    if os.path.basename(first) == "Summary.xml":
+        folder = os.path.dirname(first)
+        return os.path.join(folder, os.path.basename(folder) + ".db")
+    return os.path.splitext(first)[0] + ".db"
+
+
 def cmd_build(args):
     from .parse import build, build_key, expand_paths, unchanged_build
-    out = args.out or os.path.splitext(args.ddr[0])[0] + ".db"
+    if len(args.ddr) == 1 and os.path.isdir(args.ddr[0]):
+        folder = os.path.abspath(args.ddr[0].rstrip(os.sep))
+        args.ddr = _sources_in_folder(folder)
+        out = args.out or os.path.join(folder, os.path.basename(folder) + ".db")
+    else:
+        out = args.out or _default_out(args.ddr)
     # v1.16.0: the key covers every DDR behind a Summary.xml, so expand first
     try:
         paths = expand_paths(args.ddr)
@@ -1310,8 +1342,10 @@ def main(argv=None):
                        help="parse DDR XML(s), a Summary.xml manifest, or Save a Copy as XML "
                             "export(s) made with FileMaker 26 and analysis details into SQLite")
     b.add_argument("ddr", nargs="+",
-                   help="one or more *_fmp12.xml DDR files, a single Summary.xml, "
-                        "or one or more Save a Copy as XML exports (one per file)")
+                   help="the DDR folder (its Summary.xml, else its *_fmp12.xml files, else "
+                        "its one export), one or more *_fmp12.xml DDR files, a single "
+                        "Summary.xml, or one or more Save a Copy as XML exports (one per "
+                        "file); without -o the index lands in the DDR folder, named after it")
     b.add_argument("-o", "--out")
     b.add_argument("--label")
     b.add_argument("--force", action="store_true",

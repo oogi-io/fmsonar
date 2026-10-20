@@ -11,7 +11,7 @@ well.
 # from a FileMaker DDR export (Tools > Database Design Report > XML):
 python3 -m fm_ddr.cli build path/to/Solution_fmp12.xml -o solution.db
 # multi-file solutions: point at the manifest - ALL files land in one DB
-python3 -m fm_ddr.cli build path/to/Summary.xml -o solution.db
+python3 -m fm_ddr.cli build path/to/DDR            # the folder: Summary.xml, else *_fmp12.xml; writes path/to/DDR/DDR.db
 # or from Save a Copy as XML exports (FileMaker 26, made with "Include details
 # for analysis tools"; FMDeveloperTool: -include_details), one per file:
 python3 -m fm_ddr.cli build path/to/Solution_saxml.xml -o solution.db

@@ -27,7 +27,7 @@ by serving `fm_ddr/web/index.html` as a static file.
 
 ## Install the CLI
 
-One line, then a new window. Needs Python 3.10 or later.
+One line, then a fresh window. Needs Python 3.10 or later.
 
 macOS, in Terminal (Homebrew installs pipx):
 
@@ -41,17 +41,24 @@ Windows, in PowerShell (Python from python.org):
 py -m pip install --user pipx; py -m pipx install fmsonar; py -m pipx ensurepath
 ```
 
-Open a new window so `fmsonar` is on your path, then build the index from your DDR
-folder and ask your first question. If you use Claude Code, the third line installs
-the skill (see "Your AI assistant"); skip it otherwise.
+Close that window and open a new one: only a fresh window knows the new `fmsonar`
+command.
 
-```bash
-fmsonar build "/path/to/your DDR/Summary.xml" -o solution.db
-fmsonar where solution.db "CUS__Customer::Name_First"
-fmsonar install-skill
+Build the index. Type `fmsonar build `, drag your DDR folder into the window (that
+pastes its location) and press Return. The index lands in that folder, named after it:
+
+```
+fmsonar build ~/Desktop/MyDDR
+Done: /Users/you/Desktop/MyDDR/MyDDR.db
 ```
 
-Output, here from the lab file `tests/fixtures/saxml_lab3_2.3.0.0.xml` (both inputs
+Ask your first question:
+
+```
+fmsonar where ~/Desktop/MyDDR/MyDDR.db "CUS__Customer::Name_First"
+```
+
+The answer, here from the lab file `tests/fixtures/saxml_lab3_2.3.0.0.xml` (both inputs
 print the same shape):
 
 ```
@@ -72,11 +79,11 @@ Each row is one use: `source` is what uses the field, `context` is how; the pare
 the script or layout object it sits in. A layout object with no name in FileMaker has
 none here either; `ambiguous` is 1 when several things share the name.
 
-`solution.db` is one file on disk (without `-o` it is written next to the export). It
-holds the whole schema, so treat it like the export itself. fmsonar reads it, and so
-does any SQLite tool such as DB Browser for SQLite.
+The index is one file on disk (`-o` puts it elsewhere). It holds the whole schema, so
+treat it like the export itself. fmsonar reads it, and so does any SQLite tool such as
+DB Browser for SQLite.
 
-| Command (`DB` is your `solution.db`) | Answers |
+| Command (`DB` is your index file) | Answers |
 |---|---|
 | `where DB "name"` | the uses of a field, script, layout, table occurrence or custom function |
 | `search DB "text"` | full-text search across calculations, script steps and names |
@@ -106,8 +113,12 @@ section "SaXML next to the DDR".
 
 ## Your AI assistant
 
-After `fmsonar install-skill`, Claude Code knows the schema, the query recipes and how to investigate. Point it
-at a DDR or an export; the index lands next to it. `fmsonar install-skill --check`
+```bash
+fmsonar install-skill
+```
+
+Claude Code then knows the schema, the query recipes and how to investigate. Point it
+at a DDR folder or an export; the index lands with it. `fmsonar install-skill --check`
 tells you when the installed skill differs from the tool's. Other assistants read
 [AGENTS.md](https://github.com/oogi-io/fmsonar/blob/main/AGENTS.md).
 

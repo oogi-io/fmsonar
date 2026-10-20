@@ -2178,10 +2178,11 @@ class TestSaXMLInputRobustness(unittest.TestCase):
         with contextlib.redirect_stderr(err), self.assertRaises(SystemExit):
             main(["build", path, "-o", os.path.join(self.tmp, "o.db")])
         lines = err.getvalue().strip().splitlines()
-        self.assertEqual(len(lines), 2, err.getvalue())   # "Parsing ..." + error
-        self.assertTrue(lines[1].startswith("error: "), lines[1])
-        self.assertNotIn("Errno", lines[1])
-        return lines[1]
+        # "Parsing ..." + error for a file; a folder is refused before parsing (v1.16.2)
+        self.assertIn(len(lines), (1, 2), err.getvalue())
+        self.assertTrue(lines[-1].startswith("error: "), lines[-1])
+        self.assertNotIn("Errno", lines[-1])
+        return lines[-1]
 
     def test_missing_file_one_line(self):
         line = self.cli_error(os.path.join(self.tmp, "absent.xml"))
@@ -6462,3 +6463,67 @@ class TestListAndSplashLocations(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestBuildFolderInput(unittest.TestCase):
+    """v1.16.2: `build <folder>` reads the folder's Summary.xml, else its *_fmp12.xml
+    files, else its one export, and lands in the folder named after it; a Summary.xml
+    given directly lands the same way; a single file still builds to <file>.db."""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp()
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def run_build(self, *args):
+        import contextlib
+        import io
+        from fm_ddr.cli import main
+        out, err = io.StringIO(), io.StringIO()
+        with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+            main(["build", *args])
+        return out.getvalue() + err.getvalue()
+
+    def test_folder_with_ddr_files(self):
+        folder = os.path.join(self.tmp, "MyDDR")
+        os.makedirs(folder)
+        shutil.copy(FIXTURE, os.path.join(folder, "Lab_fmp12.xml"))
+        text = self.run_build(folder)
+        db = os.path.join(folder, "MyDDR.db")
+        self.assertIn(db, text)
+        self.assertTrue(os.path.exists(db))
+
+    def test_folder_with_one_export(self):
+        folder = os.path.join(self.tmp, "Export")
+        os.makedirs(folder)
+        shutil.copy(os.path.join(ROOT, "tests", "fixtures", "saxml_lab3_2.3.0.0.xml"),
+                    os.path.join(folder, "Lab_saxml.xml"))
+        self.run_build(folder)
+        self.assertTrue(os.path.exists(os.path.join(folder, "Export.db")))
+
+    def test_summary_lands_in_its_folder(self):
+        # The micro fixture has no Summary.xml; the default-name rule alone is tested
+        from fm_ddr.cli import _default_out
+        self.assertEqual(_default_out([os.path.join(self.tmp, "Sol", "Summary.xml")]),
+                         os.path.join(self.tmp, "Sol", "Sol.db"))
+        self.assertEqual(_default_out([os.path.join(self.tmp, "x_fmp12.xml")]),
+                         os.path.join(self.tmp, "x_fmp12.db"))
+
+    def test_empty_folder_is_refused(self):
+        folder = os.path.join(self.tmp, "Nothing")
+        os.makedirs(folder)
+        import contextlib
+        import io
+        from fm_ddr.cli import main
+        err = io.StringIO()
+        with contextlib.redirect_stderr(err), self.assertRaises(SystemExit):
+            main(["build", folder])
+        self.assertIn("holds no Summary.xml", err.getvalue())
+
+    def test_trailing_slash(self):
+        folder = os.path.join(self.tmp, "Slash")
+        os.makedirs(folder)
+        shutil.copy(FIXTURE, os.path.join(folder, "Lab_fmp12.xml"))
+        self.run_build(folder + os.sep)
+        self.assertTrue(os.path.exists(os.path.join(folder, "Slash.db")))

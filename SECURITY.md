@@ -7,7 +7,7 @@ A design export is a client's whole schema. This is what fmsonar does with it.
 - **fmsonar.com** parses in your browser. There is no server and no network request
   that carries your data: the page's Content-Security-Policy has `connect-src 'none'`,
   set in the page and at the CDN, so even an injected script could not send anything.
-- **The CLI** writes one file on disk, next to the export unless `-o` says otherwise,
+- **The CLI** writes one file on disk, in the DDR folder unless `-o` says otherwise,
   and transmits nothing.
 - **Reports and entity exports** are self-contained HTML with the same policy, holding
   only what you chose to include.
