@@ -185,7 +185,7 @@ def _connect(db_path):
     # phantom empty .db behind and produce a misleading "<1.2.0" stale warning
     if not os.path.exists(db_path):
         raise SystemExit(f"error: {db_path} does not exist. "
-                         f"Build an index first: fmsonar build <DDR folder> (or -o {db_path})")
+                         f"Build an index first: fmsonar build <DDR folder>, or with -o {db_path} to write it here")
     conn = sqlite3.connect(db_path)
     try:
         row = conn.execute("SELECT parser_version FROM ddr_run LIMIT 1").fetchone()
@@ -196,7 +196,7 @@ def _connect(db_path):
     if built_with != __version__:
         print(f"WARNING: index built with fm_ddr {built_with or '<1.2.0'}, "
               f"running {__version__} — newer parsers capture more references. "
-              f"Rebuild: fmsonar build <DDR folder> (or -o {db_path})",
+              f"Rebuild: fmsonar build <DDR folder>, or with -o {db_path}",
               file=sys.stderr)
     return conn
 

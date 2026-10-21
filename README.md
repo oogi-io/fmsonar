@@ -27,7 +27,7 @@ by serving `fm_ddr/web/index.html` as a static file.
 
 ## Install the CLI
 
-One line, then a fresh window. Needs Python 3.10 or later.
+Needs Python 3.10 or later.
 
 macOS, in Terminal (Homebrew installs pipx):
 
@@ -35,10 +35,11 @@ macOS, in Terminal (Homebrew installs pipx):
 brew install pipx && pipx install fmsonar && pipx ensurepath
 ```
 
-Windows, in PowerShell (Python from python.org):
+Windows: install pipx the way [pipx.pypa.io](https://pipx.pypa.io/stable/installation/)
+describes for Windows and restart the terminal, then:
 
 ```powershell
-py -m pip install --user pipx; py -m pipx install fmsonar; py -m pipx ensurepath
+pipx install fmsonar
 ```
 
 Close that window and open a new one: only a fresh window knows the new `fmsonar`
