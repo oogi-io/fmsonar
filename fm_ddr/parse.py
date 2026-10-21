@@ -1142,7 +1142,7 @@ def build(ddr_paths, db_path: str, label: str | None = None,
     os.close(fd)
     conn = sqlite3.connect(tmp_path)
     try:
-        with open(SCHEMA_PATH) as f:
+        with open(SCHEMA_PATH, encoding="utf-8") as f:
             conn.executescript(f.read())
         # Entities and refs are streamed interleaved and share a single id space
         # assigned in-process, so referential integrity holds by construction.
@@ -1208,7 +1208,7 @@ def build(ddr_paths, db_path: str, label: str | None = None,
                 "Generate one via Tools > Database Design Report > XML.")
 
         # resolve edges + build views
-        with open(os.path.join(os.path.dirname(__file__), "resolve.sql")) as f:
+        with open(os.path.join(os.path.dirname(__file__), "resolve.sql"), encoding="utf-8") as f:
             conn.executescript(f.read())
         conn.commit()
         summary = _summarize(conn)

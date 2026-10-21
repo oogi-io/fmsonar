@@ -185,7 +185,7 @@ def _connect(db_path):
     # phantom empty .db behind and produce a misleading "<1.2.0" stale warning
     if not os.path.exists(db_path):
         raise SystemExit(f"error: {db_path} does not exist. "
-                         f"Build an index first: fm-ddr build <ddr.xml...> -o {db_path}")
+                         f"Build an index first: fmsonar build <DDR folder> (or -o {db_path})")
     conn = sqlite3.connect(db_path)
     try:
         row = conn.execute("SELECT parser_version FROM ddr_run LIMIT 1").fetchone()
@@ -196,7 +196,7 @@ def _connect(db_path):
     if built_with != __version__:
         print(f"WARNING: index built with fm_ddr {built_with or '<1.2.0'}, "
               f"running {__version__} — newer parsers capture more references. "
-              f"Rebuild: fm-ddr build <ddr.xml...> -o {db_path}",
+              f"Rebuild: fmsonar build <DDR folder> (or -o {db_path})",
               file=sys.stderr)
     return conn
 
@@ -266,7 +266,7 @@ def cmd_cascades(args):
     conn = _connect(args.db)
     if not conn.execute("SELECT 1 FROM sqlite_master WHERE name='v_cascades'").fetchone():
         raise SystemExit("error: this index has no v_cascades view (built with "
-                         "parser < 1.10.0). Rebuild: fm-ddr build <ddr.xml...> "
+                         "parser < 1.10.0). Rebuild: fmsonar build <DDR folder> "
                          f"-o {args.db}")
     where, params = "", ()
     if args.table:
@@ -1328,7 +1328,21 @@ def _splash(stream=None):
     print("\n".join(out), file=stream)
 
 
+def _utf8_streams():
+    """fmsonar writes UTF-8, always: on Windows a redirected stdout is the ANSI
+    code page below Python 3.15, which cannot carry the arrows and markers the
+    output uses. Reconfiguring keeps the bytes lossless; tests read them as UTF-8."""
+    for stream in (sys.stdout, sys.stderr):
+        enc = (getattr(stream, "encoding", None) or "").replace("-", "").lower()
+        if enc != "utf8" and hasattr(stream, "reconfigure"):
+            try:
+                stream.reconfigure(encoding="utf-8")
+            except (ValueError, AttributeError):
+                pass
+
+
 def main(argv=None):
+    _utf8_streams()
     p = argparse.ArgumentParser(prog="fmsonar", description=_banner(),
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--debug", action="store_true",

@@ -298,7 +298,7 @@ class TestParser(unittest.TestCase):
         import subprocess, sys as _sys
         r = subprocess.run([_sys.executable, "-m", "fm_ddr.cli", "list",
                             os.path.dirname(self.db)],
-                           capture_output=True, text=True)
+                           capture_output=True, text=True, encoding="utf-8")
         self.assertEqual(r.returncode, 0, r.stderr)
         self.assertIn(os.path.basename(self.db), r.stdout)
         from fm_ddr import __version__
@@ -309,7 +309,7 @@ class TestParser(unittest.TestCase):
         import subprocess, sys as _sys
         r = subprocess.run([_sys.executable, "-m", "fm_ddr.cli", "investigate",
                             self.db, "Chain Root", "--no-body"],
-                           capture_output=True, text=True)
+                           capture_output=True, text=True, encoding="utf-8")
         self.assertEqual(r.returncode, 0, r.stderr)
         out = r.stdout
         # default-on: the compact rollup appears without any flag
@@ -321,7 +321,7 @@ class TestParser(unittest.TestCase):
         # --chain expands to the full census
         r2 = subprocess.run([_sys.executable, "-m", "fm_ddr.cli", "investigate",
                              self.db, "Chain Root", "--no-body", "--chain"],
-                            capture_output=True, text=True)
+                            capture_output=True, text=True, encoding="utf-8")
         self.assertIn("### CHAIN DELETERS", r2.stdout)
         self.assertIn("portal row: layout context is NOT the target table", r2.stdout)
 
@@ -353,7 +353,7 @@ class TestParser(unittest.TestCase):
         import subprocess, sys as _sys
         r = subprocess.run([_sys.executable, "-m", "fm_ddr.cli", "mutations",
                             self.db, "--like", "Torture"],
-                           capture_output=True, text=True)
+                           capture_output=True, text=True, encoding="utf-8")
         self.assertEqual(r.returncode, 0, r.stderr)
         out = r.stdout
         # 1) browse-mode New Record on clean context -> likely CONTACT
@@ -476,7 +476,7 @@ class TestParser(unittest.TestCase):
 
     def test_build_rejects_non_ddr(self):
         bogus = os.path.join(self.tmp, "not_a_ddr.xml")
-        with open(bogus, "w") as f:
+        with open(bogus, "w", encoding="utf-8") as f:
             f.write('<?xml version="1.0"?><FMSaveAsXML><Structure/></FMSaveAsXML>')
         with self.assertRaises(ValueError):
             build(bogus, os.path.join(self.tmp, "bogus.db"))
@@ -487,7 +487,7 @@ class TestParser(unittest.TestCase):
         with open(target, "wb") as f:
             f.write(b"IRREPLACEABLE")
         truncated = os.path.join(self.tmp, "trunc.xml")
-        with open(truncated, "w") as f:
+        with open(truncated, "w", encoding="utf-8") as f:
             f.write('<?xml version="1.0"?><FMPReport type="Report"><File name="X">')
         with self.assertRaises(Exception):
             build(truncated, target, force=True)
@@ -510,7 +510,7 @@ class TestParser(unittest.TestCase):
 
     def test_build_refuses_to_clobber_non_fmsonar_file(self):
         target = os.path.join(self.tmp, "notes.md")
-        with open(target, "w") as f:
+        with open(target, "w", encoding="utf-8") as f:
             f.write("# my notes\n")
         with self.assertRaises(ValueError):
             build(FIXTURE, target)                       # no --force
@@ -521,7 +521,7 @@ class TestParser(unittest.TestCase):
 
     def test_build_rejects_dtd_entity_bomb(self):
         bomb = os.path.join(self.tmp, "bomb.xml")
-        with open(bomb, "w") as f:
+        with open(bomb, "w", encoding="utf-8") as f:
             f.write('<?xml version="1.0"?>\n<!DOCTYPE FMPReport [\n'
                     '<!ENTITY a "AAAA"><!ENTITY b "&a;&a;&a;">\n]>\n'
                     '<FMPReport type="Report"><File name="X">&b;</File></FMPReport>')
@@ -532,7 +532,7 @@ class TestParser(unittest.TestCase):
         from fm_ddr.parse import expand_summary
         d = os.path.join(self.tmp, "manifest")
         os.makedirs(d, exist_ok=True)
-        with open(os.path.join(d, "Summary.xml"), "w") as f:
+        with open(os.path.join(d, "Summary.xml"), "w", encoding="utf-8") as f:
             f.write('<?xml version="1.0"?><FMPReport type="Summary">'
                     '<File link="Good_fmp12.xml"/>'
                     '<File link="../../../../etc/passwd"/>'
@@ -563,7 +563,7 @@ class TestParser(unittest.TestCase):
     def test_report_embedding_is_script_safe(self):
         from fm_ddr.report import report
         out = report(self.db, os.path.join(self.tmp, "fixture.html"))
-        with open(out) as f:
+        with open(out, encoding="utf-8") as f:
             html = f.read()
         # the fixture calc contains a literal </script>; it must arrive escaped
         self.assertNotIn("<html><script>alert(1)</script>", html)
@@ -572,12 +572,12 @@ class TestParser(unittest.TestCase):
     def test_snapshot(self):
         got = normalize(*read_sqlite(self.db))
         if os.environ.get("UPDATE_SNAPSHOT"):
-            with open(SNAPSHOT, "w") as f:
+            with open(SNAPSHOT, "w", encoding="utf-8") as f:
                 json.dump(got, f, indent=1, sort_keys=True)
             self.skipTest("snapshot regenerated")
         self.assertTrue(os.path.exists(SNAPSHOT),
                         "no snapshot; run with UPDATE_SNAPSHOT=1")
-        with open(SNAPSHOT) as f:
+        with open(SNAPSHOT, encoding="utf-8") as f:
             want = json.load(f)
         self.assertEqual(got, want)
 
@@ -679,7 +679,7 @@ class TestCLI(unittest.TestCase):
     def test_skill_protocol_has_merge_step(self):
         # The blog claims the shipped protocol recommends verify-and-merge;
         # this pins that claim to the artifact.
-        s = open(os.path.join(ROOT, "fm_ddr", "skill", "SKILL.md")).read()
+        s = open(os.path.join(ROOT, "fm_ddr", "skill", "SKILL.md"), encoding="utf-8").read()
         self.assertIn("verify-and-merge", s)
         self.assertIn("most capable model", s)
 
@@ -700,7 +700,7 @@ class TestJSParity(unittest.TestCase):
     def run_js(self, xml_paths, chunk_size):
         out = subprocess.run(
             ["node", JS_RUNNER, WEB_APP, str(chunk_size)] + list(xml_paths),
-            capture_output=True, text=True, timeout=120)
+            capture_output=True, text=True, encoding="utf-8", timeout=120)
         self.assertEqual(out.returncode, 0, f"js runner failed:\n{out.stderr}")
         return normalize(*read_js(json.loads(out.stdout)))
 
@@ -787,7 +787,7 @@ class TestViewerSaXMLRefusal(unittest.TestCase):
 
     def run_js(self, path):
         return subprocess.run(["node", JS_RUNNER, WEB_APP, "65536", path],
-                              capture_output=True, text=True, timeout=120)
+                              capture_output=True, text=True, encoding="utf-8", timeout=120)
 
     def test_refused(self):
         import glob
@@ -1699,7 +1699,7 @@ class TestRobustness(unittest.TestCase):
         # the web parser must not build a silently-partial index
         out = subprocess.run(
             ["node", JS_RUNNER, WEB_APP, "13", self._truncated_fixture()],
-            capture_output=True, text=True, timeout=120)
+            capture_output=True, text=True, encoding="utf-8", timeout=120)
         self.assertNotEqual(out.returncode, 0)
         self.assertIn("truncated", (out.stderr + out.stdout).lower())
 
@@ -1984,7 +1984,7 @@ class TestPrologSniff(unittest.TestCase):
 
     def test_empty_file_refused(self):
         p = os.path.join(self.tmp, "empty.xml")
-        open(p, "w").close()
+        open(p, "w", encoding="utf-8").close()
         with self.assertRaises(ValueError) as cm:
             build(p, os.path.join(self.tmp, "empty.db"))
         self.assertIn("is empty", str(cm.exception))
@@ -3435,12 +3435,12 @@ class TestSaXMLVersions(unittest.TestCase):
                 path = os.path.join(SAXML_EXPECTED, version + ".json")
                 if os.environ.get("UPDATE_SNAPSHOT"):
                     os.makedirs(SAXML_EXPECTED, exist_ok=True)
-                    with open(path, "w") as f:
+                    with open(path, "w", encoding="utf-8") as f:
                         json.dump(got, f, indent=1, sort_keys=True)
                     continue
                 self.assertTrue(os.path.exists(path),
                                 f"no {version}.json; run with UPDATE_SNAPSHOT=1")
-                with open(path) as f:
+                with open(path, encoding="utf-8") as f:
                     self.assertEqual(got, json.load(f))
 
     def test_versions_agree(self):
@@ -3665,10 +3665,10 @@ class TestSaXMLLab3(unittest.TestCase):
         got = saxml_normalize(self.db)
         path = os.path.join(SAXML_EXPECTED, "lab3_2.3.0.0.json")
         if os.environ.get("UPDATE_SNAPSHOT"):
-            with open(path, "w") as f:
+            with open(path, "w", encoding="utf-8") as f:
                 json.dump(got, f, indent=1, sort_keys=True)
             self.skipTest("lab3 expected regenerated")
-        with open(path) as f:
+        with open(path, encoding="utf-8") as f:
             self.assertEqual(got, json.load(f))
 
 
@@ -4568,7 +4568,7 @@ class TestSourceFormat(unittest.TestCase):
     def test_list_format_column(self):
         import subprocess, sys as _sys
         r = subprocess.run([_sys.executable, "-m", "fm_ddr.cli", "list", self.tmp],
-                           capture_output=True, text=True)
+                           capture_output=True, text=True, encoding="utf-8")
         self.assertEqual(r.returncode, 0, r.stderr)
         lines = {ln.split()[0]: ln.split() for ln in r.stdout.splitlines() if ".db" in ln}
         self.assertIn("format", r.stdout)
@@ -4630,7 +4630,7 @@ class TestSaXMLModule(unittest.TestCase):
 
     def run_py(self, code):
         r = subprocess.run([sys.executable, "-c", code], cwd=ROOT,
-                           capture_output=True, text=True)
+                           capture_output=True, text=True, encoding="utf-8")
         self.assertEqual(r.returncode, 0, r.stderr)
 
     def test_handler_is_a_class_statement(self):
@@ -5706,10 +5706,10 @@ class TestCompareResolutionGate(unittest.TestCase):
             conn.close()
             tool = os.path.join(ROOT, "tools", "compare_resolution.py")
             same = subprocess.run([sys.executable, tool, new, new],
-                                  capture_output=True, text=True)
+                                  capture_output=True, text=True, encoding="utf-8")
             self.assertEqual(same.returncode, 0, same.stdout)
             out = subprocess.run([sys.executable, tool, old, new],
-                                 capture_output=True, text=True)
+                                 capture_output=True, text=True, encoding="utf-8")
             self.assertEqual(out.returncode, 1, out.stdout)
             self.assertIn("lost: 0  changed: 0  fewer edges: 1", out.stdout)
         finally:
@@ -6241,7 +6241,7 @@ class TestButtonLabelMergeFields(Test116Base):
             if sniff(path)["fmt"] == "saxml":
                 continue
             out = subprocess.run(["node", JS_RUNNER, WEB_APP, "65536", path],
-                                 capture_output=True, text=True, timeout=120)
+                                 capture_output=True, text=True, encoding="utf-8", timeout=120)
             self.assertEqual(out.returncode, 0, out.stderr)
             raws = [e["tr"] for e in json.loads(out.stdout)["edges"]]
             self.assertNotIn("", raws, os.path.basename(path))
@@ -6313,7 +6313,7 @@ class TestUnchangedSkip(unittest.TestCase):
         other = os.path.join(self.tmp, "MicroE_fmp12.xml")
         shutil.copy(FIXTURE_E, other)
         summary = os.path.join(self.tmp, "Summary.xml")
-        with open(summary, "w") as f:
+        with open(summary, "w", encoding="utf-8") as f:
             f.write('<?xml version="1.0"?><FMPReport type="Summary">'
                     '<File link="MicroF_fmp12.xml"/><File link="MicroE_fmp12.xml"/>'
                     '</FMPReport>')
@@ -6344,7 +6344,7 @@ class TestUnchangedSkip(unittest.TestCase):
         self.assertFalse(self.skipped(self.build()))
 
     def test_not_an_index_builds(self):
-        with open(self.out, "w") as f:
+        with open(self.out, "w", encoding="utf-8") as f:
             f.write("not a database")
         with self.assertRaises(SystemExit):
             self.build()
