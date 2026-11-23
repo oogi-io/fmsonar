@@ -3479,15 +3479,16 @@ SAXML_ENTITY_COLUMNS = ("fm_id", "base_table", "grp", "data_type", "field_type",
 def saxml_normalize(db_path):
     """A fixture build as entity counts per kind, every entity as its
     non-empty columns under an id-free key, and every ref as (source key,
-    context, target_kind, target_raw, resolved, disabled, trigger_event);
+    context, target_kind, target_raw, resolved, disabled, trigger_event,
+    target_file);
     keys from the harness entity_keys()."""
     entities, refs = read_sqlite(db_path)
     counts = {}
     for e in entities:
         counts[e["kind"]] = counts.get(e["kind"], 0) + 1
     rows = sorted(
-        [src, ctx, tk, raw, 1 if tgt else 0, dis, trig]
-        for src, ctx, tk, raw, tgt, _amb, dis, trig, _tf
+        [src, ctx, tk, raw, 1 if tgt else 0, dis, trig, tf]
+        for src, ctx, tk, raw, tgt, _amb, dis, trig, tf
         in normalize(entities, refs)["refs"])
     keys = entity_keys(entities)
     conn = sqlite3.connect(db_path)
@@ -3578,7 +3579,7 @@ class TestSaXMLVersions(unittest.TestCase):
         self.assertEqual([r for r in refs_b if r not in refs_a], [])
         self.assertEqual([r for r in refs_a if r not in refs_b],
                          [("", "trigger", "script", "Export SaXML", 1, 0,
-                           "OnFirstWindowOpen")])
+                           "OnFirstWindowOpen", "")])
 
 
 LAB3 = os.path.join(ROOT, "tests", "fixtures", "saxml_lab3_2.3.0.0.xml")
