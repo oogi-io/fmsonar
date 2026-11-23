@@ -1854,6 +1854,13 @@ class TestSaXMLRefusal(unittest.TestCase):
                         binary_under_lo="False", split_catalogs="True")
         self.assertIn("default export only", self.refused(p))
 
+    def test_binary_under_lo(self):
+        # The other non-default export option, on its own
+        p = self.header("binary.xml", version="2.3.0.1", Source="26.1.1",
+                        File="Lab.fmp12", Has_DDR_INFO="True",
+                        binary_under_lo="True", split_catalogs="False")
+        self.assertIn("default export only", self.refused(p))
+
     def test_mixed_formats(self):
         p = self.header("ok.xml", version="2.3.0.1", Source="26.1.1",
                         File="Lab.fmp12", Has_DDR_INFO="True",
@@ -2137,6 +2144,13 @@ class TestSaXMLInputRobustness(unittest.TestCase):
         msg = self.refused([self.SAX, self.copy("stale.xml")])
         self.assertIn("SaxLab.fmp12", msg)
         self.assertIn("stale.xml", msg)
+
+    def test_stale_copy_named_in_another_case(self):
+        # macOS and Windows open SaxLab.fmp12 and SAXLAB.fmp12 as one file
+        msg = self.refused([self.SAX, self.copy(
+            "upper.xml", 'File="SaxLab.fmp12"', 'File="SAXLAB.fmp12"')])
+        self.assertIn("upper.xml", msg)
+        self.assertIn("once", msg)
 
     def test_empty_file_attribute(self):
         p = self.copy("nofile.xml", 'File="SaxLab.fmp12"', 'File=""')
@@ -5141,6 +5155,65 @@ class TestSaXMLPartialExport(unittest.TestCase):
         msg = self.refused(p)
         self.assertIn("ExternalDataSourceCatalog", msg)
         self.assertIn("data sources", msg)
+
+    def synthetic(self, name, without, body):
+        """A synthetic whole export without the stand-in catalog `without`."""
+        self.assertIn(f"<{without}/>", SAXML_HEAD)
+        path = os.path.join(self.tmp, name)
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(SAXML_HEAD.replace(f"<{without}/>", "") + body + SAXML_TAIL)
+        return path
+
+    # A layout with one object; `inner` is the object's content
+    LAYOUT = ('<BaseTableCatalog><BaseTable id="1" name="A"/></BaseTableCatalog>'
+              '<TableOccurrenceCatalog>'
+              '<TableOccurrence id="1" name="L" type="Local"><BaseTableSourceReference>'
+              '<BaseTableReference id="1" name="A"/></BaseTableSourceReference>'
+              '</TableOccurrence></TableOccurrenceCatalog>'
+              '<LayoutCatalog><Layout id="1" name="Lay">'
+              '<TableOccurrenceReference id="1" name="L"/>'
+              '<PartsList><Part type="Body"><ObjectList>'
+              '<LayoutObject id="1" type="Button" name="b">{inner}</LayoutObject>'
+              '</ObjectList></Part></PartsList></Layout></LayoutCatalog>')
+
+    def test_external_to_alone_needs_the_data_sources(self):
+        # No DataSourceReference anywhere: the external table occurrence
+        # itself is the reference to the missing catalog
+        body = ('<TableOccurrenceCatalog>'
+                '<TableOccurrence id="2" name="ext_X" type="External">'
+                '<BaseTableSourceReference type="ExternalDataSourceReference">'
+                '</BaseTableSourceReference></TableOccurrence></TableOccurrenceCatalog>')
+        msg = self.refused(self.synthetic("ext.xml", "ExternalDataSourceCatalog", body))
+        self.assertIn("ExternalDataSourceCatalog", msg)
+        self.assertIn("data sources", msg)
+
+    def test_local_script_reference_needs_the_scripts(self):
+        # The control for the two cases below: the same export, the button
+        # calling a script of this file
+        inner = '<Button><action><ScriptReference id="5" name="Ping"/></action></Button>'
+        msg = self.refused(self.synthetic(
+            "local.xml", "ScriptCatalog", self.LAYOUT.format(inner=inner)))
+        self.assertIn("ScriptCatalog", msg)
+
+    def test_cross_file_script_reference_is_not_a_missing_catalog(self):
+        # A file with no script of its own that calls another file's: the
+        # reference follows its DataSourceReference sibling (the order the
+        # Pro export writes for a cross-file Perform Script step; under a
+        # button it is this test's assumption), and names no local script
+        inner = ('<Button><action><DataSourceReference id="1" name="Sat"/>'
+                 '<ScriptReference id="5" name="Ping"/></action></Button>')
+        path = self.synthetic("xcall.xml", "ScriptCatalog",
+                              self.LAYOUT.format(inner=inner))
+        build(path, os.path.join(self.tmp, "xcall.db"))
+
+    def test_unset_script_slot_is_not_a_missing_catalog(self):
+        # A trigger whose script was deleted keeps an empty slot (id 0, no
+        # name): it refers to no script
+        inner = ('<ScriptTriggers><ScriptTrigger action="OnObjectEnter">'
+                 '<ScriptReference id="0" name=""/></ScriptTrigger></ScriptTriggers>')
+        path = self.synthetic("unset.xml", "ScriptCatalog",
+                              self.LAYOUT.format(inner=inner))
+        build(path, os.path.join(self.tmp, "unset.db"))
 
     def test_absent_catalog_without_references_builds(self):
         # A whole export of a file with no scripts, value lists or custom
