@@ -2261,6 +2261,54 @@ class TestSaXMLPrivacy(unittest.TestCase):
         with open(out, encoding="utf-8") as f:
             self.assertIn(self.USER, f.read())
 
+    def _shared_copy(self, name, sql):
+        """A copy of the named index with `sql` run on it; its raw bytes."""
+        copy = os.path.join(self.tmp, name)
+        src = sqlite3.connect(self.db)
+        dst = sqlite3.connect(copy)
+        src.backup(dst)
+        src.close()
+        dst.execute("PRAGMA secure_delete = OFF")
+        dst.executescript(sql)
+        dst.close()
+        with open(copy, "rb") as f:
+            return f.read()
+
+    def _security_recipe(self):
+        import re
+        with open(os.path.join(ROOT, "SECURITY.md"), encoding="utf-8") as f:
+            blocks = re.findall(r"```sql\n(.*?)```", f.read(), re.S)
+        self.assertEqual(len(blocks), 1, "SECURITY.md holds one sql block")
+        return blocks[0]
+
+    def test_security_recipe_clears_the_file(self):
+        # SECURITY.md's "share an index without the names" lines, run as
+        # printed: the names are gone from the file's bytes, not only from
+        # its rows
+        recipe = self._security_recipe()
+        raw = self._shared_copy("shared.db", recipe)
+        for needle in (self.USER, self.ACCOUNT):
+            self.assertNotIn(needle.encode(), raw)
+        conn = sqlite3.connect(os.path.join(self.tmp, "shared.db"))
+        kept = conn.execute(
+            "SELECT count(*) FROM entities WHERE "
+            "json_extract(extra_json, '$.modified_at') IS NOT NULL").fetchone()[0]
+        conn.close()
+        self.assertGreater(kept, 0, "the recipe drops the names, not the stamps")
+
+    def test_the_file_check_sees_a_leak(self):
+        # The recipe without its VACUUM: the rows are clean and the free
+        # pages still hold the name, which is what the check above reads
+        update_only = self._security_recipe().split("VACUUM")[0]
+        self.assertIn("json_remove", update_only)
+        raw = self._shared_copy("update_only.db", update_only)
+        self.assertIn(self.USER.encode(), raw)
+        conn = sqlite3.connect(os.path.join(self.tmp, "update_only.db"))
+        rows = conn.execute("SELECT count(*) FROM entities WHERE instr(extra_json, ?) > 0",
+                            (self.USER,)).fetchone()[0]
+        conn.close()
+        self.assertEqual(rows, 0)
+
 
 class TestSaXMLInfoPass(unittest.TestCase):
     """Pass 1 (_InfoPass) against an independent ElementTree read of each

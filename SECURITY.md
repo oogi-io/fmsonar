@@ -23,8 +23,14 @@ never contains them; a test plants a name in an export and checks the report for
 To share an index without the names, share the report, or clear them on a copy:
 
 ```sql
-UPDATE entities SET extra_json = json_remove(extra_json, '$.modified_by', '$.modified_account')
+UPDATE entities SET extra_json = json_remove(extra_json, '$.modified_by', '$.modified_account');
+VACUUM;
 ```
+
+Run both lines. The `UPDATE` alone takes the names out of every row, but SQLite keeps
+the old bytes in the file's free pages, where `strings` still finds them; `VACUUM`
+rewrites the file without them. A test runs these two lines on an index with a planted
+name and reads the file's bytes.
 
 ## An export from a stranger is untrusted input
 
