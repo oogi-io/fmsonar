@@ -281,7 +281,7 @@ cross-source banner when the two indexes differ in format.
 
 | `FMSaveAsXML@version` | Written by (measured) | Test fixture |
 |---|---|---|
-| `2.3.0.0` | FileMaker 26.0.1 (FMDeveloperTool 26.0.1) | `tests/fixtures/saxml_2.3.0.0.xml`; `tests/fixtures/saxml_lab3_2.3.0.0.xml` (lab v3: button bar, grouped button, popover with a title calculation, tab and slide panels, web viewer, custom menu items with steps, a sub-summary part, a validation calculation, a placeholder, layout and object triggers, Send Mail calculations, Go to Related Record into a new window); `tests/fixtures/saxml_xfile_fmdt_2.3.0.0.xml` and `saxml_xfile_sat_fmdt_2.3.0.0.xml` (the two-file lab exported by FMDeveloperTool: the empty cross-file shapes and `unverifiable_xfile`); `tests/fixtures/saxml_partial_2.3.0.0.xml` (a `-catalog_list` export, refused) |
+| `2.3.0.0` | FileMaker 26.0.1 (FMDeveloperTool 26.0.1) | `tests/fixtures/saxml_2.3.0.0.xml`; `tests/fixtures/saxml_lab3_2.3.0.0.xml` (lab v3: button bar, grouped button, popover with a title calculation, tab and slide panels, web viewer, custom menu items with steps, a sub-summary part, a validation calculation, a placeholder, layout and object triggers, Send Mail calculations, Go to Related Record into a new window); `tests/fixtures/saxml_xfile_fmdt_2.3.0.0.xml` and `saxml_xfile_sat_fmdt_2.3.0.0.xml` (the two-file lab exported by FMDeveloperTool: the empty cross-file shapes and `unverifiable_xfile`); `tests/fixtures/saxml_lab4_2.3.0.0.xml` (lab v4: a script separator, relationships on other operators than equal, a lookup and an auto-enter calculation switched off, serial, constant and modifier-name auto-enters, Perform Script on Server with a callback, Import Records, Sort Records and a portal sorted by value list, steps, a portal and a value list on deleted fields, layouts and table occurrences, an ODBC data source); `tests/fixtures/saxml_xfile4_main_fmdt_2.3.0.0.xml` and `saxml_xfile4_sat_fmdt_2.3.0.0.xml` (the two-file lab v4: a portal sort, a sub-summary break field, a find request and an export order through the empty external table occurrence); `tests/fixtures/saxml_partial_2.3.0.0.xml` (a `-catalog_list` export, refused) |
 | `2.3.0.1` | FileMaker 26.1.1 (Pro 26.1.1; a Server 26.1 export is not yet measured) | `tests/fixtures/saxml_2.3.0.1.xml` (the lab file in a later state than `saxml_2.3.0.0.xml`: its `OnFirstWindowOpen` script trigger removed, which `TestSaXMLVersions` names); `tests/fixtures/saxml_xfile_2.3.0.1.xml` (a two-file lab exported by Pro with both files open: the filled cross-file shapes) |
 
 Both versions share one rule set (the 26.1 export only adds elements fmsonar
@@ -643,8 +643,10 @@ Present in one format only:
   menus only.
 
 Validation calculations are measured on lab v3 (`validation` refs, as the
-DDR). Unverified shapes: ODBC data sources, charts and conditional formatting
-(neither can be authored in the lab without FileMaker Pro).
+DDR). An ODBC data source is measured on lab v4 (its catalog entry, with no
+table occurrence on it). Unverified shapes: a table occurrence on an ODBC
+source, charts and conditional formatting (the last two cannot be authored in
+the lab without FileMaker Pro).
 
 ### SaXML has, fmsonar does not read
 
