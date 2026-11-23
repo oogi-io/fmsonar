@@ -672,8 +672,8 @@ FileMaker's own credential elements are never indexed: the handler skips
 `PasswordEncrypted`, `INSECURE_PASSWORD`, `INSECURE_TEXT`, the auto-login
 `Login`, and the file access `Authentication`; under an account only its name
 is read. The guard is that no rule of the handler reads those elements. A test
-builds every SaXML fixture with a sentinel in every credential element and
-asserts it appears nowhere in the index. The same test proves the check can
+builds every SaXML fixture that is a whole export, each with a sentinel in every
+credential element, and asserts it appears nowhere in the index. The same test proves the check can
 see a leak: a test-only handler that also reads an account's
 `PasswordEncrypted` text as its name keeps the sentinel out while the skip
 list holds, and writes it into the index once the skip list is emptied. It

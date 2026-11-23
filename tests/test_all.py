@@ -2405,6 +2405,22 @@ def _saxml_fixtures():
                         for n in SUPPORTED.values()] + [LAB3] if os.path.exists(p)]
 
 
+def _saxml_exports(whole_only=False):
+    """Every Save a Copy as XML fixture in tests/fixtures (root FMSaveAsXML);
+    with whole_only, without the partial -catalog_list export, which build
+    refuses and which carries no credential element."""
+    import glob
+    out = []
+    for path in sorted(glob.glob(os.path.join(ROOT, "tests", "fixtures", "saxml_*.xml"))):
+        with open(path, "rb") as f:
+            if b"<FMSaveAsXML" not in f.read(600):
+                continue
+        if whole_only and os.path.basename(path).startswith("saxml_partial_"):
+            continue
+        out.append(path)
+    return out
+
+
 # A synthetic export: the root, then empty stand-ins for the sections every
 # FileMaker file writes (saxml.REQUIRED_SECTIONS) and for the catalogs whose
 # kind a body may refer to (saxml.REFERRED_SECTIONS), so the partial-export
@@ -4419,19 +4435,22 @@ class TestSaXMLCredentials(unittest.TestCase):
 
     def test_fixtures_carry_no_user_names(self):
         import re
-        for path in _saxml_fixtures():
+        self.assertGreaterEqual(len(_saxml_exports()), 7)
+        whole = _saxml_exports(whole_only=True)
+        for path in _saxml_exports():
             with self.subTest(fixture=os.path.basename(path)):
                 with open(path, encoding="utf-8") as f:
                     text = f.read()
-                self.assertIn(self.SENTINEL, text)
+                if path in whole:
+                    self.assertIn(self.SENTINEL, text)
                 self.assertIsNone(re.search(r'\buserName="[^"]', text))
                 self.assertIsNone(re.search(r'\baccountName="[^"]', text))
 
     def test_sentinel_never_indexed(self):
         from unittest import mock
         from fm_ddr import saxml
-        self.assertTrue(_saxml_fixtures())
-        for path in _saxml_fixtures():
+        self.assertGreaterEqual(len(_saxml_exports(whole_only=True)), 6)
+        for path in _saxml_exports(whole_only=True):
             with self.subTest(fixture=os.path.basename(path)):
                 self.assertEqual(self.hits(path), {})
                 with mock.patch.object(saxml, "SaXMLHandler", self.leaky_handler()):
