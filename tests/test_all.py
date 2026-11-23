@@ -3499,9 +3499,24 @@ def saxml_normalize(db_path):
             if c in cols:
                 cols[c] = json.loads(cols[c])
         ents[keys[row[0]]] = cols
+    # v_dangling as the view lists it (no ids), and what the build counted in
+    # DDR_INFO: both feed the build's warnings
+    dangling = sorted(
+        [list(r) for r in conn.execute(
+            "SELECT f.name, d.context, d.source_kind, d.source_name,"
+            " d.source_parent_name, d.step_type, d.target_kind, d.marker,"
+            " d.marker_class, d.disabled FROM v_dangling d"
+            " JOIN files f ON f.file_id = d.file_id")],
+        key=lambda r: [x if x is not None else "" for x in map(str, r)])
+    run = dict(zip(("ddrinfo_refs", "ddrinfo_missing_steps", "ddrinfo_missing_calcs"),
+                   conn.execute("SELECT ddrinfo_refs, ddrinfo_missing_steps,"
+                                " ddrinfo_missing_calcs FROM ddr_run").fetchone()))
+    files = [list(r) for r in conn.execute(
+        "SELECT name, format_version FROM files ORDER BY file_id")]
     conn.close()
     assert len(ents) == len(entities), "entity keys collide"
-    return {"entity_counts": counts, "entities": ents, "refs": rows}
+    return {"entity_counts": counts, "entities": ents, "refs": rows,
+            "dangling": dangling, "run": run, "files": files}
 
 
 class TestSaXMLVersions(unittest.TestCase):
@@ -3774,6 +3789,82 @@ class TestSaXMLLab3(unittest.TestCase):
             self.skipTest("lab3 expected regenerated")
         with open(path, encoding="utf-8") as f:
             self.assertEqual(got, json.load(f))
+
+
+LAB4 = os.path.join(ROOT, "tests", "fixtures", "saxml_lab4_2.3.0.0.xml")
+XFILE4 = [os.path.join(ROOT, "tests", "fixtures", n) for n in
+          ("saxml_xfile4_main_fmdt_2.3.0.0.xml", "saxml_xfile4_sat_fmdt_2.3.0.0.xml")]
+
+
+class TestSaXMLLab4(unittest.TestCase):
+    """Lab v4 and the two-file lab v4: FMDeveloperTool 26.0.1 exports of the
+    synthetic lab files, scrubbed by tools/saxml_fixture.py, carrying the
+    shapes the earlier fixtures lack. Lab v4 (lab v3 plus): a script
+    separator, a layout after a folder's marker, relationships on >, <= and
+    <, a lookup and an auto-enter calculation switched off, a serial, a
+    constant and a modifier-name auto-enter, Perform Script on Server with a
+    callback, Import Records (target table occurrence kept, and deleted),
+    Sort Records by value list, a portal sorted by value list and one on a
+    deleted table occurrence, New Window on a deleted layout, Set Field on a
+    deleted field, a value list sorted by its second field and one whose
+    second field was deleted, an ODBC data source. Two-file lab v4 (Main
+    through an external table occurrence on Sat, which FMDeveloperTool
+    leaves empty): a portal sort, a sub-summary break field, a stored find
+    request and an export order through it, calculations naming it, a
+    cross-file Perform Script in a custom menu, and a satellite whose own
+    table occurrence has the external one's name.
+
+    Each build equals its file in tests/saxml_expected (UPDATE_SNAPSHOT=1
+    rewrites them): every entity column, every ref, v_dangling and the
+    DDR_INFO counts. The snapshot records what the parser does today, also
+    where that is open to question: a value list's deleted second field
+    gives no ref and no v_dangling row, and a validation calculation
+    switched off is read as a live one."""
+
+    BUILDS = {"lab4_2.3.0.0": [LAB4], "xfile4_2.3.0.0": XFILE4}
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp(prefix="fmddr_lab4_")
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def build(self, name, paths):
+        import contextlib
+        import io
+        db = os.path.join(self.tmp, name + ".db")
+        with contextlib.redirect_stderr(io.StringIO()), \
+                contextlib.redirect_stdout(io.StringIO()):
+            build(paths, db, label=name)
+        return db
+
+    def test_expected(self):
+        for name, paths in self.BUILDS.items():
+            with self.subTest(build=name):
+                got = saxml_normalize(self.build(name, paths))
+                path = os.path.join(SAXML_EXPECTED, name + ".json")
+                if os.environ.get("UPDATE_SNAPSHOT"):
+                    with open(path, "w", encoding="utf-8") as f:
+                        json.dump(got, f, indent=1, sort_keys=True)
+                    continue
+                self.assertTrue(os.path.exists(path),
+                                f"no {name}.json; run with UPDATE_SNAPSHOT=1")
+                with open(path, encoding="utf-8") as f:
+                    self.assertEqual(got, json.load(f))
+
+    def test_counts_start_over_for_each_export(self):
+        # Two exports in one build: the second starts with none of the
+        # first's calculations without reference list
+        def missing(name, paths):
+            conn = sqlite3.connect(self.build(name, paths))
+            try:
+                return conn.execute(
+                    "SELECT ddrinfo_missing_calcs FROM ddr_run").fetchone()[0]
+            finally:
+                conn.close()
+        lab, main = missing("lab", [LAB4]), missing("main", XFILE4[:1])
+        self.assertEqual((lab, main), (1, 0))
+        self.assertEqual(missing("both", [LAB4, XFILE4[0]]), lab + main)
 
 
 class TestSaXMLCrossFile(unittest.TestCase):

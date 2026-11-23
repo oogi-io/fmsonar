@@ -1,4 +1,42 @@
 {
+ "dangling": [
+  [
+   "SaxLab.fmp12",
+   "perform_script",
+   "script_step",
+   "Perform Script",
+   "Caller",
+   "Perform Script",
+   "script",
+   "<unknown>",
+   "<unknown>",
+   0
+  ],
+  [
+   "SaxLab.fmp12",
+   "step_table",
+   "script_step",
+   "Go to Related Record",
+   "Caller",
+   "Go to Related Record",
+   "table_occurrence",
+   "<unknown>",
+   "<unknown>",
+   0
+  ],
+  [
+   "SaxLab.fmp12",
+   "step_target",
+   "script_step",
+   "Set Field",
+   "Caller",
+   "Set Field",
+   "field",
+   "<Table Missing>",
+   "<Table Missing>",
+   0
+  ]
+ ],
  "entities": {
   "account|[Guest]||0": {
    "extra_json": {
@@ -2616,6 +2654,12 @@
   "theme": 1,
   "value_list": 3
  },
+ "files": [
+  [
+   "SaxLab.fmp12",
+   "2.3.0.0"
+  ]
+ ],
  "refs": [
   [
    "",
@@ -3337,5 +3381,10 @@
    0,
    ""
   ]
- ]
+ ],
+ "run": {
+  "ddrinfo_missing_calcs": 0,
+  "ddrinfo_missing_steps": 0,
+  "ddrinfo_refs": 145
+ }
 }

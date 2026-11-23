@@ -1,0 +1,984 @@
+{
+ "dangling": [
+  [
+   "Main.fmp12",
+   "broken_calc",
+   "field",
+   "Code",
+   "Main",
+   null,
+   null,
+   "<Field Missing>",
+   "<Field Missing>",
+   0
+  ],
+  [
+   "Main.fmp12",
+   "broken_calc",
+   "field",
+   "Probe",
+   "Main",
+   null,
+   null,
+   "<Field Missing>",
+   "<Field Missing>",
+   0
+  ],
+  [
+   "Main.fmp12",
+   "broken_calc",
+   "layout_object",
+   null,
+   "Main",
+   null,
+   null,
+   "<Field Missing>",
+   "<Field Missing>",
+   0
+  ],
+  [
+   "Main.fmp12",
+   "broken_calc",
+   "layout_object",
+   null,
+   "Main",
+   null,
+   null,
+   "<Field Missing>",
+   "<Field Missing>",
+   0
+  ],
+  [
+   "Main.fmp12",
+   "unverifiable_xfile",
+   "layout_object",
+   null,
+   null,
+   null,
+   "field",
+   "ext_Item::<unknown>",
+   "<unknown>",
+   0
+  ],
+  [
+   "Main.fmp12",
+   "unverifiable_xfile",
+   "script_step",
+   "Export Records",
+   "Item Steps",
+   "Export Records",
+   "field",
+   "ext_Item::<unknown>",
+   "<unknown>",
+   0
+  ],
+  [
+   "Main.fmp12",
+   "unverifiable_xfile",
+   "script_step",
+   "Perform Find",
+   "Item Steps",
+   "Perform Find",
+   "field",
+   "ext_Item::<unknown>",
+   "<unknown>",
+   0
+  ],
+  [
+   "Sat.fmp12",
+   "broken_calc",
+   "layout_object",
+   null,
+   "Items",
+   null,
+   null,
+   "<Field Missing>",
+   "<Field Missing>",
+   0
+  ]
+ ],
+ "entities": {
+  "account|Admin||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:58",
+    "modified_n": 1,
+    "uuid": "47662154-239B-493D-97AF-49CE59DEB5B7"
+   },
+   "fm_id": "2"
+  },
+  "account|Admin||1": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:57",
+    "modified_n": 1,
+    "uuid": "D36E0180-420D-4ED9-ABB1-ABBC02F6C4CD"
+   },
+   "fm_id": "2"
+  },
+  "account|[Guest]||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:58",
+    "modified_n": 0,
+    "uuid": "4FC194C5-A6CC-4042-8142-75E774216F88"
+   },
+   "fm_id": "1"
+  },
+  "account|[Guest]||1": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:57",
+    "modified_n": 0,
+    "uuid": "DE245B02-FB1E-4A9A-ADC4-610490BDF0BD"
+   },
+   "fm_id": "1"
+  },
+  "base_table|Item||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:57",
+    "modified_n": 0,
+    "uuid": "A15DBA8C-7AF0-4C89-96B9-0DDB77FABDD4"
+   },
+   "fm_id": "130"
+  },
+  "base_table|Main||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:58",
+    "modified_n": 0,
+    "uuid": "7F50AE51-E845-47A0-9E36-86B6AA85131D"
+   },
+   "fm_id": "129"
+  },
+  "base_table|Sat||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:57",
+    "modified_n": 0,
+    "uuid": "F4AF6986-33A7-46FF-BC3A-A1DB1363AAAF"
+   },
+   "fm_id": "129"
+  },
+  "custom_menu|Main Menu||0": {
+   "calc_text": "1\n\"Ping Sat\"\n1\n\"Go to Main\"\n1\n\"Main\"",
+   "extra_json": {
+    "modified_at": "2026-11-23T16:50:43",
+    "modified_n": 0,
+    "step_text": "Perform Script [ <unknown> from file: \u201cSat\u201d (file not open) ]\nGo to Layout [ \u201cMain\u201d (Main) ]",
+    "uuid": "9BCDEB29-92F6-4E1D-AD4D-C9E9576510D5"
+   },
+   "fm_id": "1"
+  },
+  "extended_privilege|fmapp||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:58",
+    "modified_n": 0,
+    "uuid": "0108606A-A945-48EC-B09A-C104104E852D"
+   },
+   "fm_id": "3"
+  },
+  "extended_privilege|fmapp||1": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:57",
+    "modified_n": 0,
+    "uuid": "5D3AB6BA-7CEC-4040-9886-BDA7C5D362D0"
+   },
+   "fm_id": "3"
+  },
+  "extended_privilege|fmextscriptaccess||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:58",
+    "modified_n": 0,
+    "uuid": "A1F68814-08A8-4BB8-88CF-1AA9B16209B5"
+   },
+   "fm_id": "7"
+  },
+  "extended_privilege|fmextscriptaccess||1": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:57",
+    "modified_n": 0,
+    "uuid": "C7B89D83-BB1B-4468-9E16-4799387A8D67"
+   },
+   "fm_id": "7"
+  },
+  "extended_privilege|fmodata||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:58",
+    "modified_n": 0,
+    "uuid": "697274E3-BAB0-47FE-A4F8-9D0CC05CD007"
+   },
+   "fm_id": "10"
+  },
+  "extended_privilege|fmodata||1": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:57",
+    "modified_n": 0,
+    "uuid": "419D70CD-C876-425F-8CD0-893FD9804F91"
+   },
+   "fm_id": "10"
+  },
+  "extended_privilege|fmphp||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:58",
+    "modified_n": 0,
+    "uuid": "5BF50AC5-448C-465E-892F-3ED0E5D8CEA2"
+   },
+   "fm_id": "6"
+  },
+  "extended_privilege|fmphp||1": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:57",
+    "modified_n": 0,
+    "uuid": "2DACFC91-7F9C-4573-A649-DE09FD04192C"
+   },
+   "fm_id": "6"
+  },
+  "extended_privilege|fmplugin||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:58",
+    "modified_n": 0,
+    "uuid": "568353C2-8E40-478F-B27D-C8DE04E48234"
+   },
+   "fm_id": "11"
+  },
+  "extended_privilege|fmplugin||1": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:57",
+    "modified_n": 0,
+    "uuid": "CBB61F13-C99F-4D62-88FC-11BFD654B297"
+   },
+   "fm_id": "11"
+  },
+  "extended_privilege|fmreauthenticate10||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:58",
+    "modified_n": 0,
+    "uuid": "1CCC4244-0083-4E3C-94EF-D7DBDECE0296"
+   },
+   "fm_id": "4"
+  },
+  "extended_privilege|fmreauthenticate10||1": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:57",
+    "modified_n": 0,
+    "uuid": "724A94CC-D8E2-4859-B66A-7062BB9FBE9E"
+   },
+   "fm_id": "4"
+  },
+  "extended_privilege|fmrest||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:58",
+    "modified_n": 0,
+    "uuid": "E78B7293-A81D-4155-BF4A-52AAFA1909FD"
+   },
+   "fm_id": "9"
+  },
+  "extended_privilege|fmrest||1": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:57",
+    "modified_n": 0,
+    "uuid": "6C7DAC5F-1B68-4E03-A7AD-7A66BA2B9632"
+   },
+   "fm_id": "9"
+  },
+  "extended_privilege|fmurlscript||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:58",
+    "modified_n": 0,
+    "uuid": "5E8682F7-12F5-4B77-BABA-A422B640A364"
+   },
+   "fm_id": "8"
+  },
+  "extended_privilege|fmurlscript||1": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:57",
+    "modified_n": 0,
+    "uuid": "503EF595-4B55-463E-A547-F70F62F92D62"
+   },
+   "fm_id": "8"
+  },
+  "extended_privilege|fmwebdirect||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:58",
+    "modified_n": 0,
+    "uuid": "3B7670D1-477E-4417-906C-51A2910DC916"
+   },
+   "fm_id": "1"
+  },
+  "extended_privilege|fmwebdirect||1": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:57",
+    "modified_n": 0,
+    "uuid": "D8ED63C6-04DF-499B-8F5E-1CE2EBDD2A50"
+   },
+   "fm_id": "1"
+  },
+  "extended_privilege|fmxdbc||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:58",
+    "modified_n": 0,
+    "uuid": "40A833FE-2927-4F49-B67E-6F9852F599FE"
+   },
+   "fm_id": "2"
+  },
+  "extended_privilege|fmxdbc||1": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:57",
+    "modified_n": 0,
+    "uuid": "42B87F0B-AFF6-4514-AA55-C09655C0057F"
+   },
+   "fm_id": "2"
+  },
+  "extended_privilege|fmxml||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:58",
+    "modified_n": 0,
+    "uuid": "7840990E-F83F-4E85-A1B2-A9B58400735C"
+   },
+   "fm_id": "5"
+  },
+  "extended_privilege|fmxml||1": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:57",
+    "modified_n": 0,
+    "uuid": "BD19A264-D650-44EB-A2DB-CBB61CF4201A"
+   },
+   "fm_id": "5"
+  },
+  "external_data_source|Sat||0": {
+   "extra_json": {
+    "file": true,
+    "file_name": "Sat.fmp12",
+    "modified_at": "2026-10-07T18:08:15",
+    "modified_n": 0,
+    "uuid": "C67F942D-1F8F-4369-BAA2-390E3DC2F051"
+   },
+   "fm_id": "1"
+  },
+  "field|Code|base_table|Main||0|0": {
+   "auto_enter": {
+    "always_evaluate": false,
+    "calc": "ext_Item::<Field Missing>",
+    "calc_active": true,
+    "overwrite_existing": false
+   },
+   "base_table": "Main",
+   "data_type": "Text",
+   "extra_json": {
+    "modified_at": "2026-11-23T16:51:26",
+    "modified_n": 1,
+    "uuid": "A7650398-8F1B-476C-BB01-C0D47E4EAECA",
+    "validation_calc": "not IsEmpty ( <Field Missing> )"
+   },
+   "field_type": "Normal",
+   "fm_id": "4",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|Name|base_table|Item||0|0": {
+   "base_table": "Item",
+   "data_type": "Text",
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:57",
+    "modified_n": 0,
+    "uuid": "281B7131-EBF3-4AB8-A311-419A463F30D5"
+   },
+   "field_type": "Normal",
+   "fm_id": "1",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|Note|base_table|Main||0|0": {
+   "base_table": "Main",
+   "data_type": "Text",
+   "extra_json": {
+    "modified_at": "2026-10-07T18:08:15",
+    "modified_n": 0,
+    "uuid": "1E79B218-2375-4A65-85D1-9A0DC0BE4E52"
+   },
+   "field_type": "Normal",
+   "fm_id": "1",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|Probe|base_table|Main||0|0": {
+   "base_table": "Main",
+   "data_type": "Text",
+   "extra_json": {
+    "modified_at": "2026-11-23T16:52:36",
+    "modified_n": 1,
+    "uuid": "53059810-9066-485F-AA6C-8D3E9CE2D0D9",
+    "validation_calc": "Let ( ext_Item = 1 ; ext_Item& <Field Missing> )"
+   },
+   "field_type": "Normal",
+   "fm_id": "7",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "layout_object||layout_object||layout|Main Items||0|0|0": {
+   "extra_json": {
+    "bounds": "0,0,24,150",
+    "key": "2",
+    "object_type": "Edit Box",
+    "uuid": "10BF6637-1611-4968-A8E0-61E3F78D91ED"
+   },
+   "fm_id": "2"
+  },
+  "layout_object||layout|Items||0|0": {
+   "extra_json": {
+    "bounds": "20,20,40,120",
+    "key": "1",
+    "object_type": "Text",
+    "text": "Local",
+    "tooltip_calc": "ext_Item::<Field Missing>",
+    "uuid": "76E52922-4760-4E83-A823-205A719EAF96"
+   },
+   "fm_id": "1"
+  },
+  "layout_object||layout|Main Items||0|0": {
+   "extra_json": {
+    "bounds": "20,20,110,320",
+    "key": "1",
+    "object_type": "Portal",
+    "uuid": "E613C7B7-915C-41BB-A28B-81E4E7827DE0"
+   },
+   "fm_id": "1"
+  },
+  "layout_object||layout|Main||0|0": {
+   "extra_json": {
+    "bounds": "20,20,40,120",
+    "hide_calc": "IsEmpty ( ext_Item::<Field Missing> )",
+    "key": "1",
+    "object_type": "Text",
+    "text": "Mixed",
+    "tooltip_calc": "Main::<Field Missing>",
+    "uuid": "ED3DA5DB-44B2-4EDB-BE6C-987D2B0FD79E"
+   },
+   "fm_id": "1"
+  },
+  "layout_object||layout|Main||0|1": {
+   "extra_json": {
+    "bounds": "50,20,70,120",
+    "key": "2",
+    "object_type": "Text",
+    "text": "Bare",
+    "tooltip_calc": "Let ( ext_Item = 1 ; ext_Item& Main::<Field Missing> )",
+    "uuid": "EDF42C20-1B40-4CB1-98E0-ABDD205B3D8D"
+   },
+   "fm_id": "2"
+  },
+  "layout|Item Report||0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-11-23T16:50:26",
+    "modified_n": 0,
+    "uuid": "FCB15B07-6FFD-4A9C-9414-D17B55296573"
+   },
+   "fm_id": "3"
+  },
+  "layout|Items||0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-11-23T16:51:48",
+    "modified_n": 0,
+    "uuid": "4C40FE41-C65A-4A98-A4A1-720B94754C4A"
+   },
+   "fm_id": "2"
+  },
+  "layout|Main Items||0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-11-23T16:50:26",
+    "modified_n": 0,
+    "uuid": "CF2CFA62-314D-4067-B18A-5BDC55740B09"
+   },
+   "fm_id": "2"
+  },
+  "layout|Main||0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-11-23T16:51:26",
+    "modified_n": 1,
+    "uuid": "FA369E4C-D783-4D83-A80F-187DEF377AF6"
+   },
+   "fm_id": "1"
+  },
+  "layout|Sat||0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-07T18:07:57",
+    "modified_n": 0,
+    "uuid": "35BFBE0A-EA1A-4C2E-97BC-6143A8C53A60"
+   },
+   "fm_id": "1"
+  },
+  "privilege_set|[Data Entry Only]||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:58",
+    "modified_n": 0,
+    "uuid": "567AC58A-D33D-4AB8-BAEE-859A1A2762F5"
+   },
+   "fm_id": "2"
+  },
+  "privilege_set|[Data Entry Only]||1": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:57",
+    "modified_n": 0,
+    "uuid": "0A5236C1-D530-4752-9243-48135748A64C"
+   },
+   "fm_id": "2"
+  },
+  "privilege_set|[Full Access]||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:58",
+    "modified_n": 0,
+    "uuid": "DFB7A3A5-F250-49B7-974B-C95E47F29526"
+   },
+   "fm_id": "1"
+  },
+  "privilege_set|[Full Access]||1": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:57",
+    "modified_n": 0,
+    "uuid": "84B56D45-7945-4A2A-BE14-087581D4BFD7"
+   },
+   "fm_id": "1"
+  },
+  "privilege_set|[Read-Only Access]||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:58",
+    "modified_n": 0,
+    "uuid": "874DD4BE-F6C8-42E5-90DE-E8FFE668781A"
+   },
+   "fm_id": "3"
+  },
+  "privilege_set|[Read-Only Access]||1": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:57",
+    "modified_n": 0,
+    "uuid": "6DE7B6F2-0E4B-43BB-987F-970150AAEB0B"
+   },
+   "fm_id": "3"
+  },
+  "relationship|Main :: ext_Item||0": {
+   "extra_json": {
+    "modified_at": "2026-11-23T16:50:16",
+    "modified_n": 0,
+    "predicates": [
+     {
+      "left": "Main::Note",
+      "op": "Equal",
+      "right": "ext_Item::"
+     }
+    ],
+    "sides": [
+     {
+      "cascade_create": false,
+      "cascade_delete": false,
+      "side": "left",
+      "to": "Main"
+     },
+     {
+      "cascade_create": false,
+      "cascade_delete": false,
+      "side": "right",
+      "to": "ext_Item"
+     }
+    ],
+    "uuid": "74181297-0EF0-4F19-A25F-8FDBDE4B803B"
+   },
+   "fm_id": "1"
+  },
+  "script_step|# (comment)|script|Ping||0|0": {
+   "extra_json": {
+    "step_text": "#satellite script",
+    "uuid": "F037F9CC-358A-4A39-975E-0839D972FC67"
+   },
+   "fm_id": "89",
+   "seq": 1,
+   "step_type": "# (comment)"
+  },
+  "script_step|Close Window|script|Export SaXML||0|0": {
+   "extra_json": {
+    "step_text": "Close Window [ Current Window ]",
+    "uuid": "93C9B42A-481D-49C0-82AD-1C08B1EE6C04"
+   },
+   "fm_id": "121",
+   "seq": 4,
+   "step_type": "Close Window"
+  },
+  "script_step|Export Records|script|Item Steps||0|0": {
+   "extra_json": {
+    "step_text": "Export Records [ File Name: \u201cfile:Items.tab\u201d; Create folders:Yes; Character Set: \u201cWindows (ANSI)\u201d; Field Order: ext_Item::<File Missing> ]\n[ No dialog ]",
+    "uuid": "CC090797-DFE3-47B3-8E32-F94286ACFE48"
+   },
+   "fm_id": "36",
+   "seq": 3,
+   "step_type": "Export Records"
+  },
+  "script_step|Import Records|script|Item Steps||0|0": {
+   "extra_json": {
+    "step_text": "Import Records [ Source: \u201cfile:Items.tab\u201d; Fields Name Row: -1; Predefined: No; Target: \u201cext_Item\u201d; Method: Add; Character Set: \u201cWindows ANSI\u201d ]\n[ No dialog ]",
+    "uuid": "8A22CB42-5253-43FC-9688-B79565E9A4A8"
+   },
+   "fm_id": "35",
+   "seq": 2,
+   "step_type": "Import Records"
+  },
+  "script_step|Open File|script|Export SaXML||0|0": {
+   "extra_json": {
+    "step_text": "Open File [ \u201cSat\u201d ]\n[ Open hidden ]",
+    "uuid": "2F99CF8F-39E3-47EB-B88C-D53D9CEC6EFE"
+   },
+   "fm_id": "33",
+   "seq": 1,
+   "step_type": "Open File"
+  },
+  "script_step|Perform Find|script|Item Steps||0|0": {
+   "extra_json": {
+    "step_text": "Perform Find [ Specified Find Requests: Find Records; Criteria: ext_Item::<File Missing>: \u201ca\u201d ]\n[ Restore ]",
+    "uuid": "B4461EBE-AF13-426D-AEC8-2CE5278F70D9"
+   },
+   "fm_id": "28",
+   "seq": 1,
+   "step_type": "Perform Find"
+  },
+  "script_step|Perform Script|script|Call Sat||0|0": {
+   "extra_json": {
+    "step_text": "Perform Script [ <unknown> from file: \u201cSat\u201d (file not open) ]",
+    "uuid": "A7B951EE-B394-49C1-B391-26B0C0CCBA58"
+   },
+   "fm_id": "1",
+   "seq": 1,
+   "step_type": "Perform Script"
+  },
+  "script_step|Save a Copy as XML|script|Export SaXML||0|0": {
+   "extra_json": {
+    "step_text": "Save a Copy as XML [  Window name:    ; Destination file: \u201c$path\u201d ; Include details for analysis tools ]",
+    "uuid": "97C72E48-D613-42B2-AFFB-C51FAD5CC12B"
+   },
+   "fm_id": "3",
+   "seq": 3,
+   "step_type": "Save a Copy as XML"
+  },
+  "script_step|Set Variable|script|Export SaXML||0|0": {
+   "calc_text": "Substitute ( Get ( FilePath ) ; \".fmp12\" ; \"_saxml.xml\" )",
+   "extra_json": {
+    "step_text": "Set Variable [ $path; Value:Substitute ( Get ( FilePath ) ; \".fmp12\" ; \"_saxml.xml\" ) ]",
+    "uuid": "35530036-0E95-4A06-84FB-C3261ABD157C"
+   },
+   "fm_id": "141",
+   "seq": 2,
+   "step_type": "Set Variable"
+  },
+  "script|Call Sat||0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-07T18:08:36",
+    "modified_n": 0,
+    "uuid": "96072181-51AB-4B77-A2D5-FFA68A894246"
+   },
+   "fm_id": "1"
+  },
+  "script|Export SaXML||0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-07T18:08:37",
+    "modified_n": 0,
+    "uuid": "8301AE1A-9048-430F-B516-9DA97793BB3D"
+   },
+   "fm_id": "2"
+  },
+  "script|Item Steps||0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-11-23T16:50:43",
+    "modified_n": 0,
+    "uuid": "9F9BCFA6-ACB1-4A3C-8ECC-1E31037379C9"
+   },
+   "fm_id": "3"
+  },
+  "script|Ping||0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-07T18:07:57",
+    "modified_n": 0,
+    "uuid": "4F7CFE6E-1B15-4D1B-BC03-2DBC0917028D"
+   },
+   "fm_id": "1"
+  },
+  "table_occurrence|Item||0": {
+   "base_table": "Item",
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:57",
+    "modified_n": 0,
+    "uuid": "06C0B653-9295-4D77-8214-E6609EA6AEC1"
+   },
+   "fm_id": "1065090"
+  },
+  "table_occurrence|Main||0": {
+   "base_table": "Main",
+   "extra_json": {
+    "modified_at": "2026-11-23T16:50:16",
+    "modified_n": 1,
+    "uuid": "37B34D0C-8AF3-419D-82B2-D09200ED5E95"
+   },
+   "fm_id": "1065089"
+  },
+  "table_occurrence|Sat||0": {
+   "base_table": "Sat",
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:57",
+    "modified_n": 0,
+    "uuid": "5C42B85F-3E3F-41DB-BDD7-CD49EC964892"
+   },
+   "fm_id": "1065089"
+  },
+  "table_occurrence|ext_Item||0": {
+   "extra_json": {
+    "external": true,
+    "modified_at": "2026-11-23T16:50:16",
+    "modified_n": 1,
+    "uuid": "6CC89BD5-82B0-4DC1-9179-FD2783DA3967"
+   },
+   "fm_id": "1065090"
+  },
+  "table_occurrence|ext_Item||1": {
+   "base_table": "Item",
+   "extra_json": {
+    "modified_at": "2026-11-23T16:51:45",
+    "modified_n": 0,
+    "uuid": "9AB94376-20BA-41E3-A67E-56A0543734A3"
+   },
+   "fm_id": "1065091"
+  },
+  "theme|Apex Blue||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:58",
+    "modified_n": 0,
+    "uuid": "16FBB67F-5E19-4CE2-AA51-6E5D4A7E0958"
+   },
+   "fm_id": "01"
+  },
+  "theme|Apex Blue||1": {
+   "extra_json": {
+    "modified_at": "2026-10-07T18:07:57",
+    "modified_n": 0,
+    "uuid": "A6BF96A3-CA7C-4C95-8AD7-412F0CBAC705"
+   },
+   "fm_id": "01"
+  }
+ },
+ "entity_counts": {
+  "account": 4,
+  "base_table": 3,
+  "custom_menu": 1,
+  "extended_privilege": 22,
+  "external_data_source": 1,
+  "field": 4,
+  "layout": 5,
+  "layout_object": 5,
+  "privilege_set": 6,
+  "relationship": 1,
+  "script": 4,
+  "script_step": 9,
+  "table_occurrence": 5,
+  "theme": 2
+ },
+ "files": [
+  [
+   "Main.fmp12",
+   "2.3.0.0"
+  ],
+  [
+   "Sat.fmp12",
+   "2.3.0.0"
+  ]
+ ],
+ "refs": [
+  [
+   "",
+   "trigger",
+   "script",
+   "Export SaXML",
+   1,
+   0,
+   "OnFirstWindowOpen"
+  ],
+  [
+   "custom_menu|Main Menu||0",
+   "go_to_layout",
+   "layout",
+   "Main",
+   1,
+   0,
+   ""
+  ],
+  [
+   "custom_menu|Main Menu||0",
+   "perform_script",
+   "script",
+   "",
+   0,
+   0,
+   ""
+  ],
+  [
+   "layout_object||layout_object||layout|Main Items||0|0|0",
+   "layout_object",
+   "field",
+   "",
+   0,
+   0,
+   ""
+  ],
+  [
+   "layout_object||layout|Main Items||0|0",
+   "portal",
+   "table_occurrence",
+   "ext_Item",
+   1,
+   0,
+   ""
+  ],
+  [
+   "layout_object||layout|Main Items||0|0",
+   "sort",
+   "field",
+   "",
+   0,
+   0,
+   ""
+  ],
+  [
+   "layout|Item Report||0",
+   "layout_context",
+   "table_occurrence",
+   "ext_Item",
+   1,
+   0,
+   ""
+  ],
+  [
+   "layout|Item Report||0",
+   "part_break",
+   "field",
+   "",
+   0,
+   0,
+   ""
+  ],
+  [
+   "layout|Items||0",
+   "layout_context",
+   "table_occurrence",
+   "Item",
+   1,
+   0,
+   ""
+  ],
+  [
+   "layout|Main Items||0",
+   "layout_context",
+   "table_occurrence",
+   "Main",
+   1,
+   0,
+   ""
+  ],
+  [
+   "layout|Main||0",
+   "layout_context",
+   "table_occurrence",
+   "Main",
+   1,
+   0,
+   ""
+  ],
+  [
+   "layout|Sat||0",
+   "layout_context",
+   "table_occurrence",
+   "Sat",
+   1,
+   0,
+   ""
+  ],
+  [
+   "relationship|Main :: ext_Item||0",
+   "join_predicate",
+   "field",
+   "",
+   0,
+   0,
+   ""
+  ],
+  [
+   "relationship|Main :: ext_Item||0",
+   "join_predicate",
+   "field",
+   "Main::Note",
+   1,
+   0,
+   ""
+  ],
+  [
+   "relationship|Main :: ext_Item||0",
+   "join_predicate",
+   "table_occurrence",
+   "Main",
+   1,
+   0,
+   ""
+  ],
+  [
+   "relationship|Main :: ext_Item||0",
+   "join_predicate",
+   "table_occurrence",
+   "ext_Item",
+   1,
+   0,
+   ""
+  ],
+  [
+   "script_step|Export Records|script|Item Steps||0|0",
+   "export_field",
+   "field",
+   "",
+   0,
+   0,
+   ""
+  ],
+  [
+   "script_step|Import Records|script|Item Steps||0|0",
+   "step_table",
+   "table_occurrence",
+   "ext_Item",
+   1,
+   0,
+   ""
+  ],
+  [
+   "script_step|Perform Find|script|Item Steps||0|0",
+   "find_request",
+   "field",
+   "",
+   0,
+   0,
+   ""
+  ],
+  [
+   "script_step|Perform Script|script|Call Sat||0|0",
+   "perform_script",
+   "script",
+   "",
+   0,
+   0,
+   ""
+  ]
+ ],
+ "run": {
+  "ddrinfo_missing_calcs": 0,
+  "ddrinfo_missing_steps": 0,
+  "ddrinfo_refs": 26
+ }
+}
