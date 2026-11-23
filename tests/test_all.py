@@ -43,11 +43,9 @@ WEB_APP = os.path.join(ROOT, "fm_ddr", "web", "index.html")
 # names stay distinct but ids (which differ between parsers) drop out.
 # ---------------------------------------------------------------------------
 
-def normalize(entities, refs):
-    """entities: [{id,kind,name,parent_id,base_table,grp}], refs: [{source_id,
-    context,target_kind,target_raw,target_id}] -> canonical dict."""
-    by_id = {e["id"]: e for e in entities}
-
+def entity_keys(entities):
+    """entity id -> a key that does not depend on ids: kind, name, the
+    parent's key and an ordinal among same-named siblings."""
     keys = {}
     ordinal_counter = {}
     for e in sorted(entities, key=lambda x: x["id"]):  # id order == document order
@@ -56,6 +54,13 @@ def normalize(entities, refs):
         ordinal = ordinal_counter.get(base, 0)
         ordinal_counter[base] = ordinal + 1
         keys[e["id"]] = f'{e["kind"]}|{e["name"] or ""}|{parent_key or ""}|{ordinal}'
+    return keys
+
+
+def normalize(entities, refs):
+    """entities: [{id,kind,name,parent_id,base_table,grp}], refs: [{source_id,
+    context,target_kind,target_raw,target_id}] -> canonical dict."""
+    keys = entity_keys(entities)
 
     ent_rows = sorted(
         [keys[e["id"]], e["base_table"] or "", e["grp"] or "",
@@ -3463,10 +3468,19 @@ class TestSaXMLUnusedCaveat(unittest.TestCase):
 SAXML_EXPECTED = os.path.join(ROOT, "tests", "saxml_expected")
 
 
+# What a snapshot holds of each entity: every column that carries meaning,
+# the two JSON columns parsed. Not `records` (NULL from this format) and not
+# the ids, which the key replaces.
+SAXML_ENTITY_COLUMNS = ("fm_id", "base_table", "grp", "data_type", "field_type",
+                        "calc_text", "step_type", "seq", "ext_file", "stored",
+                        "indexed", "is_global", "auto_enter", "extra_json")
+
+
 def saxml_normalize(db_path):
-    """A fixture build as entity counts per kind and every ref as (source
-    key, context, target_kind, target_raw, resolved, disabled,
-    trigger_event); source keys from the harness normalize()."""
+    """A fixture build as entity counts per kind, every entity as its
+    non-empty columns under an id-free key, and every ref as (source key,
+    context, target_kind, target_raw, resolved, disabled, trigger_event);
+    keys from the harness entity_keys()."""
     entities, refs = read_sqlite(db_path)
     counts = {}
     for e in entities:
@@ -3475,7 +3489,19 @@ def saxml_normalize(db_path):
         [src, ctx, tk, raw, 1 if tgt else 0, dis, trig]
         for src, ctx, tk, raw, tgt, _amb, dis, trig, _tf
         in normalize(entities, refs)["refs"])
-    return {"entity_counts": counts, "refs": rows}
+    keys = entity_keys(entities)
+    conn = sqlite3.connect(db_path)
+    ents = {}
+    for row in conn.execute("SELECT entity_id, " + ", ".join(SAXML_ENTITY_COLUMNS)
+                            + " FROM entities"):
+        cols = {c: v for c, v in zip(SAXML_ENTITY_COLUMNS, row[1:]) if v is not None}
+        for c in ("auto_enter", "extra_json"):
+            if c in cols:
+                cols[c] = json.loads(cols[c])
+        ents[keys[row[0]]] = cols
+    conn.close()
+    assert len(ents) == len(entities), "entity keys collide"
+    return {"entity_counts": counts, "entities": ents, "refs": rows}
 
 
 class TestSaXMLVersions(unittest.TestCase):
@@ -4794,6 +4820,46 @@ class TestSaXMLLabPair(unittest.TestCase):
         want = [("Phone_r", "CUS__Customer", "CUS__Customer::Phone_r[3]", "field", "Phone_r")]
         self.assertEqual(self.q("ddr", q), want)
         self.assertEqual(self.q("sax", q), want)
+
+    STAMPS = ("uuid", "modified_at", "modified_n", "modified_by", "modified_account")
+
+    def entities(self, kind):
+        """Every entity but the layout objects (the DDR gives those no id)
+        as key -> columns: a field by table and id, a step by script and
+        position, the rest by kind, id and name. Without `records` (NULL
+        from the export) and the change stamps (the export's only)."""
+        rows = self.q(kind,
+                      "SELECT e.kind, e.fm_id, e.name, p.name, e.base_table, e.grp,"
+                      " e.data_type, e.field_type, e.calc_text, e.step_type, e.seq,"
+                      " e.ext_file, e.stored, e.indexed, e.is_global, e.auto_enter,"
+                      " e.extra_json FROM entities e LEFT JOIN entities p"
+                      " ON p.entity_id = e.parent_entity_id"
+                      " WHERE e.kind <> 'layout_object'")
+        out = {}
+        for r in rows:
+            k, fm_id, name, parent = r[:4]
+            key = (("field", r[4], fm_id) if k == "field" else
+                   ("script_step", parent, r[10]) if k == "script_step" else
+                   (k, fm_id, name))
+            extra = {x: v for x, v in json.loads(r[16] or "{}").items()
+                     if x not in self.STAMPS}
+            self.assertNotIn(key, out)
+            out[key] = r[4:15] + (json.loads(r[15] or "null"), extra)
+        return out
+
+    def test_entities_as_ddr(self):
+        # The DDR is the independent reading of the same file: every table,
+        # field, table occurrence, relationship, script, step, layout, value
+        # list, custom function, privilege set and account has the same
+        # columns from both, extra_json included. The one entity the export
+        # lacks is the standard menu set (it has no menu set catalog)
+        ddr, sax = self.entities("ddr"), self.entities("sax")
+        self.assertGreater(len(ddr), 200)
+        self.assertEqual(set(ddr) - set(sax),
+                         {("custom_menu_set", "1", "[Standard FileMaker Menus]")})
+        self.assertEqual(set(sax) - set(ddr), set())
+        self.assertEqual({k: v for k, v in sax.items()},
+                         {k: v for k, v in ddr.items() if k in sax})
 
     def test_auto_enter_as_ddr(self):
         # The DDR writes always_evaluate / overwrite_existing only for an

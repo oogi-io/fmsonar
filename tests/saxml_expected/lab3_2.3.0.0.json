@@ -1,4 +1,3023 @@
 {
+ "entities": {
+  "account|[Guest]||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:02",
+    "modified_n": 0,
+    "uuid": "26D9A2F7-140D-4D31-96C2-A2752248B6E8"
+   },
+   "fm_id": "1"
+  },
+  "account|admin||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T16:09:00",
+    "modified_n": 2,
+    "uuid": "441A4C83-514E-45D8-8965-B0259769A1F1"
+   },
+   "fm_id": "2"
+  },
+  "base_table|CUS__Customer||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "ABFD6C5B-DEF0-45D8-B68E-DF55EF54DF75"
+   },
+   "fm_id": "130"
+  },
+  "base_table|Global||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:05",
+    "modified_n": 1,
+    "uuid": "ABFA4E88-10F3-4BC8-9DDA-8F17E017BC0E"
+   },
+   "fm_id": "129"
+  },
+  "base_table|SAL__Sale||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "26BA9F15-40FA-4293-8098-FD335F0E32EF"
+   },
+   "fm_id": "132"
+  },
+  "base_table|WAT__Watch||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "28524AD6-908E-4DAA-B5BF-06CAED8FE24B"
+   },
+   "fm_id": "131"
+  },
+  "custom_function|_Str_FullName||0": {
+   "calc_text": "Trim ( firstName & \" \" & lastName )",
+   "extra_json": {
+    "arity": "2",
+    "modified_at": "2026-10-07T20:42:41",
+    "modified_n": 1,
+    "parameters": "firstName;lastName",
+    "uuid": "26B19C11-39EA-4213-90FB-611F37ECA376"
+   },
+   "fm_id": "1"
+  },
+  "custom_function|_Util_Tooltip||0": {
+   "calc_text": "Case ( key = \"sell\" ; \"Sell this watch\" ; key = \"newCustomer\" ; \"Add a customer\" ; \"\" )",
+   "extra_json": {
+    "arity": "1",
+    "modified_at": "2026-10-07T20:42:41",
+    "modified_n": 1,
+    "parameters": "key",
+    "uuid": "CCA9CC66-746F-4180-98A7-2AB490781EF4"
+   },
+   "fm_id": "2"
+  },
+  "custom_menu_set|Lab Menu Set||0": {
+   "extra_json": {
+    "modified_at": "2026-10-08T14:41:28",
+    "modified_n": 0,
+    "uuid": "661E54AB-F954-48AC-88A5-5EA43647E64F"
+   },
+   "fm_id": "2"
+  },
+  "custom_menu|Lab Menu||0": {
+   "calc_text": "\"menu\"\nnot IsEmpty ( Get ( AccountName ) )\n\"Run Menu Target\"\n1\n1\n\"Go to Watch List\"\n1\n\"Lab\"",
+   "extra_json": {
+    "modified_at": "2026-10-08T14:41:28",
+    "modified_n": 0,
+    "step_text": "Perform Script [ \u201cMenu Target\u201d; Parameter: \"menu\" ]\nGo to Layout [ \u201cWatch List\u201d (WAT__Watch) ]",
+    "uuid": "8F2ECDAC-0C48-4DE7-8C82-15AA87BC440F"
+   },
+   "fm_id": "1"
+  },
+  "extended_privilege|fmapp||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:02",
+    "modified_n": 0,
+    "uuid": "7BC6D109-5DCB-4E7B-A807-213A95B2B40D"
+   },
+   "fm_id": "3"
+  },
+  "extended_privilege|fmextscriptaccess||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:02",
+    "modified_n": 0,
+    "uuid": "D9A06D7D-22D1-48CE-B956-8B02BF4569B2"
+   },
+   "fm_id": "7"
+  },
+  "extended_privilege|fmodata||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:02",
+    "modified_n": 0,
+    "uuid": "9A30BA2C-1E23-4578-92CE-FA7D02D9CF38"
+   },
+   "fm_id": "10"
+  },
+  "extended_privilege|fmphp||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:02",
+    "modified_n": 0,
+    "uuid": "FD6D30D5-76F6-4733-B6D1-FA5DC84E4398"
+   },
+   "fm_id": "6"
+  },
+  "extended_privilege|fmplugin||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:02",
+    "modified_n": 0,
+    "uuid": "34FE432A-359D-49B5-B112-1FADA12C8242"
+   },
+   "fm_id": "11"
+  },
+  "extended_privilege|fmreauthenticate10||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:02",
+    "modified_n": 0,
+    "uuid": "5CA1F557-434B-4EA2-9045-459BB6D110FD"
+   },
+   "fm_id": "4"
+  },
+  "extended_privilege|fmrest||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:02",
+    "modified_n": 0,
+    "uuid": "7E005471-6BB0-4F9C-A24B-41EF25B3A1C4"
+   },
+   "fm_id": "9"
+  },
+  "extended_privilege|fmurlscript||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:02",
+    "modified_n": 0,
+    "uuid": "23C643D4-5408-476F-A134-B9B1F8D1A5A6"
+   },
+   "fm_id": "8"
+  },
+  "extended_privilege|fmwebdirect||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:02",
+    "modified_n": 0,
+    "uuid": "26CDF5DA-E9E3-4CCF-88C8-F8604258402C"
+   },
+   "fm_id": "1"
+  },
+  "extended_privilege|fmxdbc||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:02",
+    "modified_n": 0,
+    "uuid": "96A8428A-803E-413B-A24A-938BB5C3AFFC"
+   },
+   "fm_id": "2"
+  },
+  "extended_privilege|fmxml||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:02",
+    "modified_n": 0,
+    "uuid": "2C552387-6BC3-4A1C-9F03-9B0F8B98F32E"
+   },
+   "fm_id": "5"
+  },
+  "field|Address_CountryCode|base_table|CUS__Customer||0|0": {
+   "base_table": "CUS__Customer",
+   "data_type": "Text",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "2B553655-F928-4188-BAF9-A9225A36D967"
+   },
+   "field_type": "Normal",
+   "fm_id": "9",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|Brand|base_table|WAT__Watch||0|0": {
+   "base_table": "WAT__Watch",
+   "data_type": "Text",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "4E7178A9-C5F0-4C0C-8684-5F81100525C0"
+   },
+   "field_type": "Normal",
+   "fm_id": "6",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|ID_Customer|base_table|SAL__Sale||0|0": {
+   "base_table": "SAL__Sale",
+   "data_type": "Text",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "0C1AF394-626B-4A1C-8A1F-67E678BEDC53"
+   },
+   "field_type": "Normal",
+   "fm_id": "6",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|ID_Watch|base_table|SAL__Sale||0|0": {
+   "base_table": "SAL__Sale",
+   "data_type": "Text",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "BE9448BB-9FCD-45F6-BFD1-F2A4CE035026"
+   },
+   "field_type": "Normal",
+   "fm_id": "7",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|ID|base_table|CUS__Customer||0|0": {
+   "auto_enter": {
+    "always_evaluate": false,
+    "calc": "Get ( UUID )",
+    "calc_active": true,
+    "overwrite_existing": false,
+    "prohibit_editing": true
+   },
+   "base_table": "CUS__Customer",
+   "data_type": "Text",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "238A0B48-FCF7-4497-994A-B88EA0FB3EA9"
+   },
+   "field_type": "Normal",
+   "fm_id": "1",
+   "indexed": "Minimal",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|ID|base_table|Global||0|0": {
+   "auto_enter": {
+    "always_evaluate": false,
+    "calc": "Get ( UUID )",
+    "calc_active": true,
+    "overwrite_existing": false,
+    "prohibit_editing": true
+   },
+   "base_table": "Global",
+   "data_type": "Text",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:05",
+    "modified_n": 0,
+    "uuid": "64933A55-4297-4CA3-996E-DE0076AE7044"
+   },
+   "field_type": "Normal",
+   "fm_id": "1",
+   "indexed": "Minimal",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|ID|base_table|SAL__Sale||0|0": {
+   "auto_enter": {
+    "always_evaluate": false,
+    "calc": "Get ( UUID )",
+    "calc_active": true,
+    "overwrite_existing": false,
+    "prohibit_editing": true
+   },
+   "base_table": "SAL__Sale",
+   "data_type": "Text",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "87F23DF5-9EFC-478A-A702-BF9B9EDDCD53"
+   },
+   "field_type": "Normal",
+   "fm_id": "1",
+   "indexed": "Minimal",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|ID|base_table|WAT__Watch||0|0": {
+   "auto_enter": {
+    "always_evaluate": false,
+    "calc": "Get ( UUID )",
+    "calc_active": true,
+    "overwrite_existing": false,
+    "prohibit_editing": true
+   },
+   "base_table": "WAT__Watch",
+   "data_type": "Text",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "8A31C7BF-5EA3-4B68-9064-70D95BA2742A"
+   },
+   "field_type": "Normal",
+   "fm_id": "1",
+   "indexed": "Minimal",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|Model|base_table|WAT__Watch||0|0": {
+   "base_table": "WAT__Watch",
+   "data_type": "Text",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "E9F47A13-43D7-4AD1-8082-D01B79745799"
+   },
+   "field_type": "Normal",
+   "fm_id": "7",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|Name_First|base_table|CUS__Customer||0|0": {
+   "base_table": "CUS__Customer",
+   "data_type": "Text",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "D3DA0015-124B-4C66-932F-6F9988939314"
+   },
+   "field_type": "Normal",
+   "fm_id": "6",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|Name_Full_c|base_table|CUS__Customer||0|0": {
+   "auto_enter": {
+    "always_evaluate": false
+   },
+   "base_table": "CUS__Customer",
+   "calc_text": "_Str_FullName ( Name_First ; Name_Last )",
+   "data_type": "Text",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "2A51B9D3-772D-45B5-8056-52209E31740F"
+   },
+   "field_type": "Calculated",
+   "fm_id": "8",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|Name_Last|base_table|CUS__Customer||0|0": {
+   "base_table": "CUS__Customer",
+   "data_type": "Text",
+   "extra_json": {
+    "modified_at": "2026-10-08T14:41:54",
+    "modified_n": 1,
+    "uuid": "53E70F35-5C9A-4EAE-A205-D1A9F103D785",
+    "validation_calc": "Length ( Name_Last ) < 100 and Name_Last <> CUS__Customer::Name_First\n\"Too long: \" & Name_Last"
+   },
+   "field_type": "Normal",
+   "fm_id": "7",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|Phone_r|base_table|CUS__Customer||0|0": {
+   "base_table": "CUS__Customer",
+   "data_type": "Text",
+   "extra_json": {
+    "modified_at": "2026-10-07T20:41:32",
+    "modified_n": 0,
+    "uuid": "78F42732-B98F-439A-BCB9-AAEA1583BF68"
+   },
+   "field_type": "Normal",
+   "fm_id": "10",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|Price_Total_s|base_table|WAT__Watch||0|0": {
+   "base_table": "WAT__Watch",
+   "data_type": "Number",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "C97AE2DB-3B8B-405A-9F22-0450FBA3EA65"
+   },
+   "field_type": "Summary",
+   "fm_id": "9"
+  },
+  "field|Price|base_table|SAL__Sale||0|0": {
+   "auto_enter": {
+    "lookup": true,
+    "lookup_active": true,
+    "lookup_source": "SAL_WAT__Watch::Price"
+   },
+   "base_table": "SAL__Sale",
+   "data_type": "Number",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:22",
+    "modified_n": 0,
+    "uuid": "3148FAD4-8BB6-4AF6-9124-A0C4BBA411B3"
+   },
+   "field_type": "Normal",
+   "fm_id": "9",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|Price|base_table|WAT__Watch||0|0": {
+   "base_table": "WAT__Watch",
+   "data_type": "Number",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "2367AF93-FC12-4CF0-98A5-16B31A4A4EA6"
+   },
+   "field_type": "Normal",
+   "fm_id": "8",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|SaleCount_cu|base_table|WAT__Watch||0|0": {
+   "auto_enter": {
+    "always_evaluate": false
+   },
+   "base_table": "WAT__Watch",
+   "calc_text": "Count ( WAT_SAL__Sale::ID )",
+   "data_type": "Number",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:22",
+    "modified_n": 0,
+    "uuid": "1A027C9C-E085-48AD-8398-62F6B202B0D4"
+   },
+   "field_type": "Calculated",
+   "fm_id": "11",
+   "is_global": 0,
+   "stored": 0
+  },
+  "field|SoldOn|base_table|SAL__Sale||0|0": {
+   "base_table": "SAL__Sale",
+   "data_type": "Date",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "EE13BFA0-F54E-44BE-BFC0-45A95D300F9D"
+   },
+   "field_type": "Normal",
+   "fm_id": "8",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|zz_Filter_g|base_table|WAT__Watch||0|0": {
+   "base_table": "WAT__Watch",
+   "data_type": "Text",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "2A7D1E18-A2E7-4A5F-A261-1ACCE82E1E2F"
+   },
+   "field_type": "Normal",
+   "fm_id": "10",
+   "is_global": 1,
+   "stored": 1
+  },
+  "field|zz_recCreateAccountName|base_table|CUS__Customer||0|0": {
+   "auto_enter": {
+    "prohibit_editing": true,
+    "type": "CreationAccountName"
+   },
+   "base_table": "CUS__Customer",
+   "data_type": "Text",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "F0D2A6D1-6E16-422B-8241-0E4A4F372CB4"
+   },
+   "field_type": "Normal",
+   "fm_id": "2",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|zz_recCreateAccountName|base_table|Global||0|0": {
+   "auto_enter": {
+    "prohibit_editing": true,
+    "type": "CreationAccountName"
+   },
+   "base_table": "Global",
+   "data_type": "Text",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:05",
+    "modified_n": 0,
+    "uuid": "C778267D-26A1-465A-B46A-F5B57D6CE61A"
+   },
+   "field_type": "Normal",
+   "fm_id": "2",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|zz_recCreateAccountName|base_table|SAL__Sale||0|0": {
+   "auto_enter": {
+    "prohibit_editing": true,
+    "type": "CreationAccountName"
+   },
+   "base_table": "SAL__Sale",
+   "data_type": "Text",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "03B8B256-3B17-4DCE-879D-C0AD17088774"
+   },
+   "field_type": "Normal",
+   "fm_id": "2",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|zz_recCreateAccountName|base_table|WAT__Watch||0|0": {
+   "auto_enter": {
+    "prohibit_editing": true,
+    "type": "CreationAccountName"
+   },
+   "base_table": "WAT__Watch",
+   "data_type": "Text",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "7F467C2E-B987-409F-8D12-533139D00FDE"
+   },
+   "field_type": "Normal",
+   "fm_id": "2",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|zz_recCreateTimestamp|base_table|CUS__Customer||0|0": {
+   "auto_enter": {
+    "prohibit_editing": true,
+    "type": "CreationTimeStamp"
+   },
+   "base_table": "CUS__Customer",
+   "data_type": "TimeStamp",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "D867562A-0D55-4118-9419-BD7556E6DBFB"
+   },
+   "field_type": "Normal",
+   "fm_id": "3",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|zz_recCreateTimestamp|base_table|Global||0|0": {
+   "auto_enter": {
+    "prohibit_editing": true,
+    "type": "CreationTimeStamp"
+   },
+   "base_table": "Global",
+   "data_type": "TimeStamp",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:05",
+    "modified_n": 0,
+    "uuid": "3DDA0098-EC98-43F8-8911-BA2A6443475C"
+   },
+   "field_type": "Normal",
+   "fm_id": "3",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|zz_recCreateTimestamp|base_table|SAL__Sale||0|0": {
+   "auto_enter": {
+    "prohibit_editing": true,
+    "type": "CreationTimeStamp"
+   },
+   "base_table": "SAL__Sale",
+   "data_type": "TimeStamp",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "1AB630A1-46B2-4B3D-9B51-C92A3ADB25CE"
+   },
+   "field_type": "Normal",
+   "fm_id": "3",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|zz_recCreateTimestamp|base_table|WAT__Watch||0|0": {
+   "auto_enter": {
+    "prohibit_editing": true,
+    "type": "CreationTimeStamp"
+   },
+   "base_table": "WAT__Watch",
+   "data_type": "TimeStamp",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "89EA1391-84E9-4517-BE33-51EC7636E52D"
+   },
+   "field_type": "Normal",
+   "fm_id": "3",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|zz_recModifyAccountName|base_table|CUS__Customer||0|0": {
+   "auto_enter": {
+    "prohibit_editing": true,
+    "type": "ModificationAccountName"
+   },
+   "base_table": "CUS__Customer",
+   "data_type": "Text",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "CAC0D504-EA1C-4D80-9A1D-97CCF20D90B6"
+   },
+   "field_type": "Normal",
+   "fm_id": "4",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|zz_recModifyAccountName|base_table|Global||0|0": {
+   "auto_enter": {
+    "prohibit_editing": true,
+    "type": "ModificationAccountName"
+   },
+   "base_table": "Global",
+   "data_type": "Text",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:05",
+    "modified_n": 0,
+    "uuid": "8F139191-D161-4D33-90FF-4F64392C8509"
+   },
+   "field_type": "Normal",
+   "fm_id": "4",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|zz_recModifyAccountName|base_table|SAL__Sale||0|0": {
+   "auto_enter": {
+    "prohibit_editing": true,
+    "type": "ModificationAccountName"
+   },
+   "base_table": "SAL__Sale",
+   "data_type": "Text",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "6C7DCEA4-DD3D-4598-807B-71FA2AD4F6FB"
+   },
+   "field_type": "Normal",
+   "fm_id": "4",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|zz_recModifyAccountName|base_table|WAT__Watch||0|0": {
+   "auto_enter": {
+    "prohibit_editing": true,
+    "type": "ModificationAccountName"
+   },
+   "base_table": "WAT__Watch",
+   "data_type": "Text",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "0ADF1F98-CE4A-40AF-BC9F-6C112214D6D4"
+   },
+   "field_type": "Normal",
+   "fm_id": "4",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|zz_recModifyTimestamp|base_table|CUS__Customer||0|0": {
+   "auto_enter": {
+    "prohibit_editing": true,
+    "type": "ModificationTimeStamp"
+   },
+   "base_table": "CUS__Customer",
+   "data_type": "TimeStamp",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "680D5AB2-BA53-42D9-927B-D18F6645BBD8"
+   },
+   "field_type": "Normal",
+   "fm_id": "5",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|zz_recModifyTimestamp|base_table|Global||0|0": {
+   "auto_enter": {
+    "prohibit_editing": true,
+    "type": "ModificationTimeStamp"
+   },
+   "base_table": "Global",
+   "data_type": "TimeStamp",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:05",
+    "modified_n": 0,
+    "uuid": "C6CBDC4A-88AF-4470-80AF-FE44E9920FF9"
+   },
+   "field_type": "Normal",
+   "fm_id": "5",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|zz_recModifyTimestamp|base_table|SAL__Sale||0|0": {
+   "auto_enter": {
+    "prohibit_editing": true,
+    "type": "ModificationTimeStamp"
+   },
+   "base_table": "SAL__Sale",
+   "data_type": "TimeStamp",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "77288E0E-B833-4CF1-B143-02BF311846D5"
+   },
+   "field_type": "Normal",
+   "fm_id": "5",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "field|zz_recModifyTimestamp|base_table|WAT__Watch||0|0": {
+   "auto_enter": {
+    "prohibit_editing": true,
+    "type": "ModificationTimeStamp"
+   },
+   "base_table": "WAT__Watch",
+   "data_type": "TimeStamp",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:15",
+    "modified_n": 0,
+    "uuid": "F4CD0C8F-F8BC-4B69-8B2A-8273951DEAFB"
+   },
+   "field_type": "Normal",
+   "fm_id": "5",
+   "indexed": "None",
+   "is_global": 0,
+   "stored": 1
+  },
+  "layout_group|Lab Layouts||0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-07T20:42:52",
+    "modified_n": 1,
+    "uuid": "26C2FD3F-9CFD-490D-B7CD-D7463E493A78"
+   },
+   "fm_id": "8"
+  },
+  "layout_object|BTN__Sell|layout|Watch List||0|0": {
+   "calc_text": "JSONSetElement ( \"{}\"\n\t; [ \"watchId\" ; WAT__Watch::ID ; JSONString ]\n)",
+   "extra_json": {
+    "bounds": "130,120,158,220",
+    "key": "8",
+    "object_type": "Button",
+    "step_text": "Perform Script [ \u201cSell Watch ( watchId )\u201d; Parameter: JSONSetElement ( \"{}\"\n\t; [ \"watchId\" ; WAT__Watch::ID ; JSONString ]\n) ]",
+    "text": "Sell",
+    "tooltip_calc": "_Util_Tooltip ( \"sell\" )",
+    "uuid": "9761FBE2-1386-4765-97AA-10690646C05B"
+   },
+   "fm_id": "8"
+  },
+  "layout_object|labBar|layout|Lab Layout|layout_group|Lab Layouts||0|0|0": {
+   "extra_json": {
+    "bounds": "300,16,330,376",
+    "key": "9",
+    "object_type": "Button Bar",
+    "uuid": "3044B3D2-7C48-4AA0-9EAB-015FA93142BA"
+   },
+   "fm_id": "9",
+   "grp": "Lab Layouts"
+  },
+  "layout_object|labGroup|layout|Lab Layout|layout_group|Lab Layouts||0|0|0": {
+   "calc_text": "CUS__Customer::ID",
+   "extra_json": {
+    "bounds": "336,16,366,176",
+    "key": "13",
+    "object_type": "Grouped Button",
+    "step_text": "Perform Script [ \u201cFull Access Script\u201d; Parameter: CUS__Customer::ID ]",
+    "uuid": "DC2AF74F-1C9C-4DBF-98E0-B2879B4FF903"
+   },
+   "fm_id": "13",
+   "grp": "Lab Layouts"
+  },
+  "layout_object|labPopoverButton|layout|Lab Layout|layout_group|Lab Layouts||0|0|0": {
+   "extra_json": {
+    "bounds": "340,200,370,320",
+    "key": "17",
+    "object_type": "Popover Button",
+    "uuid": "60FEDA59-F532-42D8-A5CE-3195A63AE7F8"
+   },
+   "fm_id": "17",
+   "grp": "Lab Layouts"
+  },
+  "layout_object|labSlides|layout|Lab Layout|layout_group|Lab Layouts||0|0|0": {
+   "extra_json": {
+    "bounds": "700,16,840,416",
+    "key": "25",
+    "object_type": "Slide Control",
+    "uuid": "4664F9F1-D928-4110-BEBD-93AD00F7A53E"
+   },
+   "fm_id": "25",
+   "grp": "Lab Layouts"
+  },
+  "layout_object|labTabs|layout|Lab Layout|layout_group|Lab Layouts||0|0|0": {
+   "calc_text": "CUS__Customer::ID",
+   "extra_json": {
+    "bounds": "520,16,680,416",
+    "key": "19",
+    "object_type": "Tab Control",
+    "uuid": "370B506C-EF19-4E4F-B3AF-7B8A269364B7"
+   },
+   "fm_id": "19",
+   "grp": "Lab Layouts"
+  },
+  "layout_object|labWeb|layout|Lab Layout|layout_group|Lab Layouts||0|0|0": {
+   "calc_text": "\"https://example.com/customer?id=\" & CUS__Customer::ID & \"&n=\" & _Str_FullName ( CUS__Customer::Name_First ; CUS__Customer::Name_Last )",
+   "extra_json": {
+    "bounds": "520,440,720,740",
+    "key": "31",
+    "object_type": "Web Viewer",
+    "uuid": "70047C4C-B952-41F4-91C6-CEC8628A8C5E"
+   },
+   "fm_id": "31",
+   "grp": "Lab Layouts"
+  },
+  "layout_object|nameFirst.label|layout|Lab Layout|layout_group|Lab Layouts||0|0|0": {
+   "extra_json": {
+    "bounds": "22,16,50,216",
+    "key": "1",
+    "object_type": "Text",
+    "text": "Name_First",
+    "uuid": "F380B483-E7B0-4B81-B563-1C12F6F382F2"
+   },
+   "fm_id": "1",
+   "grp": "Lab Layouts"
+  },
+  "layout_object|nameFirst|layout|Lab Layout|layout_group|Lab Layouts||0|0|0": {
+   "extra_json": {
+    "bounds": "22,224,50,424",
+    "hide_calc": "IsEmpty ( CUS__Customer::ID )",
+    "key": "2",
+    "object_type": "Edit Box",
+    "tooltip_calc": "\"First name\"",
+    "uuid": "2010362C-C563-4E9F-931A-9BFA1533D65E"
+   },
+   "fm_id": "2",
+   "grp": "Lab Layouts"
+  },
+  "layout_object|popoverCountry|layout_object||layout_object|labPopoverButton|layout|Lab Layout|layout_group|Lab Layouts||0|0|0|0|0": {
+   "extra_json": {
+    "bounds": "60,20,88,220",
+    "key": "18",
+    "object_type": "Edit Box",
+    "uuid": "8EBD289C-E5D6-41CD-8559-29DF61D1D1E2"
+   },
+   "fm_id": "18",
+   "grp": "Lab Layouts"
+  },
+  "layout_object|slideOne|layout_object|labSlides|layout|Lab Layout|layout_group|Lab Layouts||0|0|0|0": {
+   "extra_json": {
+    "bounds": "0,0,140,400",
+    "key": "26",
+    "object_type": "Panel",
+    "uuid": "CB7B67F6-7337-4F5F-A805-A2248B2A8E16"
+   },
+   "fm_id": "26",
+   "grp": "Lab Layouts"
+  },
+  "layout_object|slideTwo|layout_object|labSlides|layout|Lab Layout|layout_group|Lab Layouts||0|0|0|0": {
+   "extra_json": {
+    "bounds": "0,0,140,400",
+    "key": "27",
+    "object_type": "Panel",
+    "uuid": "0BBB0CE0-EEB2-4584-9E1F-41445F8B9C42"
+   },
+   "fm_id": "27",
+   "grp": "Lab Layouts"
+  },
+  "layout_object|tabFirst|layout_object|labTabs|layout|Lab Layout|layout_group|Lab Layouts||0|0|0|0": {
+   "calc_text": "\"First\"",
+   "extra_json": {
+    "bounds": "0,0,160,400",
+    "key": "20",
+    "object_type": "Panel",
+    "uuid": "912EBA44-15E1-44C6-ACB6-3113B0118300"
+   },
+   "fm_id": "20",
+   "grp": "Lab Layouts"
+  },
+  "layout_object|tabSecond|layout_object|labTabs|layout|Lab Layout|layout_group|Lab Layouts||0|0|0|0": {
+   "calc_text": "\"Sales \" & Count ( CUS_SAL__Sale::ID )",
+   "extra_json": {
+    "bounds": "0,0,160,400",
+    "key": "21",
+    "object_type": "Panel",
+    "uuid": "47916E11-2D19-4180-BCF5-B19C667AADC3"
+   },
+   "fm_id": "21",
+   "grp": "Lab Layouts"
+  },
+  "layout_object|zz_resize_anchor|layout|CUS__Customer_blank||0|0": {
+   "extra_json": {
+    "bounds": "414,473,466,473",
+    "key": "1",
+    "object_type": "Line",
+    "uuid": "75D9885A-205C-4F8E-B0FB-D0E025BE033B"
+   },
+   "fm_id": "1"
+  },
+  "layout_object|zz_resize_anchor|layout|Customer Detail||0|0": {
+   "extra_json": {
+    "bounds": "414,873,466,873",
+    "key": "1",
+    "object_type": "Line",
+    "uuid": "CE4A9762-7CAB-4194-ABE4-347B1B32ADE1"
+   },
+   "fm_id": "1"
+  },
+  "layout_object|zz_resize_anchor|layout|Global_blank||0|0": {
+   "extra_json": {
+    "bounds": "414,473,466,473",
+    "key": "1",
+    "object_type": "Line",
+    "uuid": "A53FCBE5-79F5-4C7F-952B-7B055CF98BFB"
+   },
+   "fm_id": "1"
+  },
+  "layout_object|zz_resize_anchor|layout|SAL__Sale_blank||0|0": {
+   "extra_json": {
+    "bounds": "414,473,466,473",
+    "key": "1",
+    "object_type": "Line",
+    "uuid": "83947275-0ED5-41F0-BED0-E6DDE365D61D"
+   },
+   "fm_id": "1"
+  },
+  "layout_object|zz_resize_anchor|layout|Sale Entry||0|0": {
+   "extra_json": {
+    "bounds": "414,873,466,873",
+    "key": "1",
+    "object_type": "Line",
+    "uuid": "FC6AC9CA-C6C9-4F43-AAF8-B1DCDC31A9DE"
+   },
+   "fm_id": "1"
+  },
+  "layout_object|zz_resize_anchor|layout|WAT__Watch_blank||0|0": {
+   "extra_json": {
+    "bounds": "414,473,466,473",
+    "key": "1",
+    "object_type": "Line",
+    "uuid": "0567637F-D206-4721-A26A-184567000D7F"
+   },
+   "fm_id": "1"
+  },
+  "layout_object|zz_resize_anchor|layout|Watch List||0|0": {
+   "extra_json": {
+    "bounds": "414,873,466,873",
+    "key": "1",
+    "object_type": "Line",
+    "uuid": "22EA9887-7BDA-4634-A112-9276995D2087"
+   },
+   "fm_id": "1"
+  },
+  "layout_object||layout_object|labBar|layout|Lab Layout|layout_group|Lab Layouts||0|0|0|0": {
+   "calc_text": "\"Bar Target\"\n\"bar\"",
+   "extra_json": {
+    "bounds": "0,0,0,0",
+    "key": "10",
+    "object_type": "Button",
+    "step_text": "Perform Script [ \u201cTarget\u201d; Parameter: \"bar\" ]",
+    "uuid": "1EAF69C7-2550-444F-9D26-2758BB2AF53E"
+   },
+   "fm_id": "10",
+   "grp": "Lab Layouts"
+  },
+  "layout_object||layout_object|labBar|layout|Lab Layout|layout_group|Lab Layouts||0|0|0|1": {
+   "calc_text": "\"Bar Set\"\n\"Bar\"",
+   "extra_json": {
+    "bounds": "0,0,0,0",
+    "key": "11",
+    "object_type": "Button",
+    "step_text": "Set Field [ CUS__Customer::Name_Last; \"Bar\" ]",
+    "uuid": "5F25A994-07AA-4E42-A507-3F5848CF79C4"
+   },
+   "fm_id": "11",
+   "grp": "Lab Layouts"
+  },
+  "layout_object||layout_object|labBar|layout|Lab Layout|layout_group|Lab Layouts||0|0|0|2": {
+   "calc_text": "\"Bar Layout\"",
+   "extra_json": {
+    "bounds": "0,0,0,0",
+    "key": "12",
+    "object_type": "Button",
+    "step_text": "Go to Layout [ \u201cWatch List\u201d (WAT__Watch) ]",
+    "uuid": "72E3DD71-7112-40D8-9C64-820FF722A3F5"
+   },
+   "fm_id": "12",
+   "grp": "Lab Layouts"
+  },
+  "layout_object||layout_object|labGroup|layout|Lab Layout|layout_group|Lab Layouts||0|0|0|0": {
+   "extra_json": {
+    "bounds": "0,0,30,160",
+    "key": "14",
+    "object_type": "Rectangle",
+    "uuid": "EF54D62B-0424-490C-85E1-D09B0A4CC823"
+   },
+   "fm_id": "14",
+   "grp": "Lab Layouts"
+  },
+  "layout_object||layout_object|labGroup|layout|Lab Layout|layout_group|Lab Layouts||0|0|0|1": {
+   "extra_json": {
+    "bounds": "4,8,26,128",
+    "key": "15",
+    "object_type": "Text",
+    "text": "Grouped",
+    "uuid": "6439A4BC-D766-431B-91EB-1DCF5A2DC79C"
+   },
+   "fm_id": "15",
+   "grp": "Lab Layouts"
+  },
+  "layout_object||layout_object|labPopoverButton|layout|Lab Layout|layout_group|Lab Layouts||0|0|0|0": {
+   "calc_text": "\"Customer \" & CUS__Customer::ID",
+   "extra_json": {
+    "bounds": "300,330,500,620",
+    "key": "16",
+    "object_type": "PopoverPanel",
+    "uuid": "B96CCF96-F3A2-4F51-827C-C9FB4B5600FA"
+   },
+   "fm_id": "16",
+   "grp": "Lab Layouts"
+  },
+  "layout_object||layout_object|slideOne|layout_object|labSlides|layout|Lab Layout|layout_group|Lab Layouts||0|0|0|0|0": {
+   "extra_json": {
+    "bounds": "20,20,48,220",
+    "key": "28",
+    "object_type": "Edit Box",
+    "uuid": "1404D838-AF89-471A-AAF1-B7758BBD6E0B"
+   },
+   "fm_id": "28",
+   "grp": "Lab Layouts"
+  },
+  "layout_object||layout_object|slideTwo|layout_object|labSlides|layout|Lab Layout|layout_group|Lab Layouts||0|0|0|0|0": {
+   "extra_json": {
+    "bounds": "20,20,42,140",
+    "key": "29",
+    "object_type": "Text",
+    "text": "Slide two",
+    "uuid": "713A39ED-AB92-4EEC-8B52-9EA207BF546A"
+   },
+   "fm_id": "29",
+   "grp": "Lab Layouts"
+  },
+  "layout_object||layout_object|slideTwo|layout_object|labSlides|layout|Lab Layout|layout_group|Lab Layouts||0|0|0|0|1": {
+   "extra_json": {
+    "bounds": "60,20,88,220",
+    "key": "30",
+    "object_type": "Edit Box",
+    "uuid": "A0D3C5F1-2569-44CD-9E13-FF33C007F2FF"
+   },
+   "fm_id": "30",
+   "grp": "Lab Layouts"
+  },
+  "layout_object||layout_object|tabFirst|layout_object|labTabs|layout|Lab Layout|layout_group|Lab Layouts||0|0|0|0|0": {
+   "calc_text": "\"Last name of \" & CUS__Customer::Name_First",
+   "extra_json": {
+    "bounds": "50,20,78,220",
+    "key": "22",
+    "object_type": "Edit Box",
+    "uuid": "7D377D51-6F33-4497-AC9D-2932C60850D4"
+   },
+   "fm_id": "22",
+   "grp": "Lab Layouts"
+  },
+  "layout_object||layout_object|tabSecond|layout_object|labTabs|layout|Lab Layout|layout_group|Lab Layouts||0|0|0|0|0": {
+   "extra_json": {
+    "bounds": "50,20,78,220",
+    "key": "23",
+    "object_type": "Edit Box",
+    "uuid": "7F22227C-620D-40D9-82EC-78CEC50E5650"
+   },
+   "fm_id": "23",
+   "grp": "Lab Layouts"
+  },
+  "layout_object||layout_object|tabSecond|layout_object|labTabs|layout|Lab Layout|layout_group|Lab Layouts||0|0|0|0|1": {
+   "extra_json": {
+    "bounds": "90,20,118,140",
+    "key": "24",
+    "object_type": "Button",
+    "step_text": "Perform Script [ \u201cTarget\u201d ]",
+    "text": "Tab Target",
+    "uuid": "7265C68E-34BF-4D31-853A-41266B6537B7"
+   },
+   "fm_id": "24",
+   "grp": "Lab Layouts"
+  },
+  "layout_object||layout_object||layout|Customer Detail||0|8|0": {
+   "extra_json": {
+    "bounds": "2,2,24,102",
+    "key": "11",
+    "object_type": "Edit Box",
+    "uuid": "8D5F14AE-DAA2-4CD1-BB65-1764CB0D1E17"
+   },
+   "fm_id": "11"
+  },
+  "layout_object||layout_object||layout|Customer Detail||0|8|1": {
+   "extra_json": {
+    "bounds": "2,110,24,210",
+    "key": "12",
+    "object_type": "Edit Box",
+    "uuid": "654B650C-5FBD-4D16-A51D-E6D781257859"
+   },
+   "fm_id": "12"
+  },
+  "layout_object||layout_object||layout|Lab Layout|layout_group|Lab Layouts||0|0|4|0": {
+   "extra_json": {
+    "bounds": "2,2,30,406",
+    "key": "8",
+    "object_type": "Edit Box",
+    "uuid": "E0EE40FC-2BF1-48FC-9752-A9D34475C43F"
+   },
+   "fm_id": "8",
+   "grp": "Lab Layouts"
+  },
+  "layout_object||layout|Customer Detail||0|0": {
+   "extra_json": {
+    "bounds": "20,-88,44,112",
+    "key": "2",
+    "object_type": "Text",
+    "text": "Name_First",
+    "uuid": "F1782502-59DD-49F8-9F6E-402502E73956"
+   },
+   "fm_id": "2"
+  },
+  "layout_object||layout|Customer Detail||0|1": {
+   "extra_json": {
+    "bounds": "20,120,44,360",
+    "key": "3",
+    "object_type": "Edit Box",
+    "uuid": "2D8C08EB-E619-46C9-AF34-6BA620236E51"
+   },
+   "fm_id": "3"
+  },
+  "layout_object||layout|Customer Detail||0|2": {
+   "extra_json": {
+    "bounds": "54,-88,78,112",
+    "key": "4",
+    "object_type": "Text",
+    "text": "Name_Last",
+    "uuid": "8E80FE16-8C37-4D41-B931-E537E74281FD"
+   },
+   "fm_id": "4"
+  },
+  "layout_object||layout|Customer Detail||0|3": {
+   "extra_json": {
+    "bounds": "54,120,78,360",
+    "key": "5",
+    "object_type": "Edit Box",
+    "uuid": "33CB7B06-F01D-49C8-9FA3-2A00BAE5FD08"
+   },
+   "fm_id": "5"
+  },
+  "layout_object||layout|Customer Detail||0|4": {
+   "extra_json": {
+    "bounds": "88,-88,112,112",
+    "key": "6",
+    "object_type": "Text",
+    "text": "Full name",
+    "uuid": "52EE51F2-446C-4B60-8400-342DB2D6DFFF"
+   },
+   "fm_id": "6"
+  },
+  "layout_object||layout|Customer Detail||0|5": {
+   "extra_json": {
+    "bounds": "88,120,112,360",
+    "key": "7",
+    "object_type": "Edit Box",
+    "uuid": "BD88B00D-B1E8-4821-9A88-4AC964DB5B79"
+   },
+   "fm_id": "7"
+  },
+  "layout_object||layout|Customer Detail||0|6": {
+   "extra_json": {
+    "bounds": "122,-88,146,112",
+    "key": "8",
+    "object_type": "Text",
+    "text": "Country",
+    "uuid": "CDAF07B0-F90D-42D9-B71C-230BCA11939C"
+   },
+   "fm_id": "8"
+  },
+  "layout_object||layout|Customer Detail||0|7": {
+   "extra_json": {
+    "bounds": "122,120,146,200",
+    "key": "9",
+    "object_type": "Edit Box",
+    "uuid": "E741AA88-3E75-4455-A21A-26904607CFC3"
+   },
+   "fm_id": "9"
+  },
+  "layout_object||layout|Customer Detail||0|8": {
+   "extra_json": {
+    "bounds": "170,20,310,440",
+    "key": "10",
+    "object_type": "Portal",
+    "uuid": "18FF18BC-F541-4487-AEC3-015234D553FC"
+   },
+   "fm_id": "10"
+  },
+  "layout_object||layout|Lab Layout|layout_group|Lab Layouts||0|0|0": {
+   "extra_json": {
+    "bounds": "56,16,84,216",
+    "key": "3",
+    "object_type": "Text",
+    "text": "Phone_r",
+    "uuid": "42B8D257-0FA0-4C8A-9FF3-10546EC4E430"
+   },
+   "fm_id": "3",
+   "grp": "Lab Layouts"
+  },
+  "layout_object||layout|Lab Layout|layout_group|Lab Layouts||0|0|1": {
+   "extra_json": {
+    "bounds": "56,224,84,424",
+    "key": "4",
+    "object_type": "Edit Box",
+    "uuid": "A77B23B4-5432-4A9F-A07C-78F051C70A2C"
+   },
+   "fm_id": "4",
+   "grp": "Lab Layouts"
+  },
+  "layout_object||layout|Lab Layout|layout_group|Lab Layouts||0|0|2": {
+   "extra_json": {
+    "bounds": "90,16,118,116",
+    "key": "5",
+    "object_type": "Button",
+    "step_text": "Perform Script [ \u201cTarget\u201d ]",
+    "text": "Run Target",
+    "uuid": "21610469-90CB-4844-8D26-D0491B17F10D"
+   },
+   "fm_id": "5",
+   "grp": "Lab Layouts"
+  },
+  "layout_object||layout|Lab Layout|layout_group|Lab Layouts||0|0|3": {
+   "calc_text": "\"Lovelace\"",
+   "extra_json": {
+    "bounds": "124,16,152,116",
+    "key": "6",
+    "object_type": "Button",
+    "step_text": "Set Field [ CUS__Customer::Name_Last; \"Lovelace\" ]",
+    "text": "Set Last",
+    "uuid": "F8E78DAF-3110-4D35-AD6C-B392AB172274"
+   },
+   "fm_id": "6",
+   "grp": "Lab Layouts"
+  },
+  "layout_object||layout|Lab Layout|layout_group|Lab Layouts||0|0|4": {
+   "extra_json": {
+    "bounds": "170,16,270,424",
+    "key": "7",
+    "object_type": "Portal",
+    "uuid": "3EE77B43-0027-4EED-80FF-29BBC9081470"
+   },
+   "fm_id": "7",
+   "grp": "Lab Layouts"
+  },
+  "layout_object||layout|Lab Report|layout_group|Lab Layouts||0|0|0": {
+   "extra_json": {
+    "bounds": "85,20,109,180",
+    "key": "1",
+    "object_type": "Edit Box",
+    "uuid": "A7210D09-159A-4C21-A6F2-4DC80D36CB46"
+   },
+   "fm_id": "1",
+   "grp": "Lab Layouts"
+  },
+  "layout_object||layout|Lab Report|layout_group|Lab Layouts||0|0|1": {
+   "extra_json": {
+    "bounds": "85,200,109,360",
+    "key": "2",
+    "object_type": "Edit Box",
+    "uuid": "754E63B8-480C-42E1-AA68-353D552DE5D3"
+   },
+   "fm_id": "2",
+   "grp": "Lab Layouts"
+  },
+  "layout_object||layout|Sale Entry||0|0": {
+   "extra_json": {
+    "bounds": "20,-88,44,112",
+    "key": "2",
+    "object_type": "Text",
+    "text": "SoldOn",
+    "uuid": "AC467D8B-32F4-4505-9C70-FFEB28581E44"
+   },
+   "fm_id": "2"
+  },
+  "layout_object||layout|Sale Entry||0|1": {
+   "extra_json": {
+    "bounds": "20,120,44,240",
+    "key": "3",
+    "object_type": "Edit Box",
+    "uuid": "DB47BFE4-BCD0-4188-B8F1-FE437C1BBCF1"
+   },
+   "fm_id": "3"
+  },
+  "layout_object||layout|Sale Entry||0|2": {
+   "extra_json": {
+    "bounds": "54,-88,78,112",
+    "key": "4",
+    "object_type": "Text",
+    "text": "Customer",
+    "uuid": "FAF71183-E7F9-432E-A164-8E0B26DD1889"
+   },
+   "fm_id": "4"
+  },
+  "layout_object||layout|Sale Entry||0|3": {
+   "extra_json": {
+    "bounds": "54,120,78,360",
+    "key": "5",
+    "object_type": "Edit Box",
+    "uuid": "A3470C78-8E2E-4B4F-A7E7-11719EE4E141"
+   },
+   "fm_id": "5"
+  },
+  "layout_object||layout|Sale Entry||0|4": {
+   "extra_json": {
+    "bounds": "88,-88,112,112",
+    "key": "6",
+    "object_type": "Text",
+    "text": "Watch",
+    "uuid": "02BDFC2B-1D03-47B2-A080-8F2450460DE7"
+   },
+   "fm_id": "6"
+  },
+  "layout_object||layout|Sale Entry||0|5": {
+   "extra_json": {
+    "bounds": "88,120,112,360",
+    "key": "7",
+    "object_type": "Edit Box",
+    "uuid": "93E44B96-EA4B-49DD-8B14-57E359C195A0"
+   },
+   "fm_id": "7"
+  },
+  "layout_object||layout|Sale Entry||0|6": {
+   "extra_json": {
+    "bounds": "122,-88,146,112",
+    "key": "8",
+    "object_type": "Text",
+    "text": "Price",
+    "uuid": "461C5EF9-CD0D-4EA7-B253-5DA86B8044A6"
+   },
+   "fm_id": "8"
+  },
+  "layout_object||layout|Sale Entry||0|7": {
+   "extra_json": {
+    "bounds": "122,120,146,240",
+    "key": "9",
+    "object_type": "Edit Box",
+    "uuid": "D8EC5C88-DFE0-4EBB-A383-BA63392429D0"
+   },
+   "fm_id": "9"
+  },
+  "layout_object||layout|Watch List||0|0": {
+   "extra_json": {
+    "bounds": "20,-88,44,112",
+    "key": "2",
+    "object_type": "Text",
+    "text": "Brand",
+    "uuid": "3D799956-1C74-4889-B4CE-E44318FE129B"
+   },
+   "fm_id": "2"
+  },
+  "layout_object||layout|Watch List||0|1": {
+   "extra_json": {
+    "bounds": "20,120,44,320",
+    "key": "3",
+    "object_type": "Edit Box",
+    "uuid": "B22C0AAE-7D75-44EB-BC32-ABFFD38EF271"
+   },
+   "fm_id": "3"
+  },
+  "layout_object||layout|Watch List||0|2": {
+   "extra_json": {
+    "bounds": "54,-88,78,112",
+    "key": "4",
+    "object_type": "Text",
+    "text": "Model",
+    "uuid": "5F46EBA5-A7C0-4280-93AD-9907829EB09F"
+   },
+   "fm_id": "4"
+  },
+  "layout_object||layout|Watch List||0|3": {
+   "extra_json": {
+    "bounds": "54,120,78,320",
+    "key": "5",
+    "object_type": "Edit Box",
+    "uuid": "86BD33C2-DEB7-46A1-8225-B77B4FD961AE"
+   },
+   "fm_id": "5"
+  },
+  "layout_object||layout|Watch List||0|4": {
+   "extra_json": {
+    "bounds": "88,-88,112,112",
+    "key": "6",
+    "object_type": "Text",
+    "text": "Price",
+    "uuid": "CF5BD2A6-78C1-459A-B34D-244F1281D7E1"
+   },
+   "fm_id": "6"
+  },
+  "layout_object||layout|Watch List||0|5": {
+   "extra_json": {
+    "bounds": "88,120,112,240",
+    "key": "7",
+    "object_type": "Edit Box",
+    "uuid": "0423A260-6110-46C6-BFE3-DF444AA44716"
+   },
+   "fm_id": "7"
+  },
+  "layout|CUS__Customer_blank||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T20:42:52",
+    "modified_n": 1,
+    "uuid": "6BAB30D3-6828-48B0-9BFB-B1CBD0A73A26"
+   },
+   "fm_id": "2"
+  },
+  "layout|Customer Detail||0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-07T20:42:52",
+    "modified_n": 2,
+    "uuid": "EAD28912-06AA-4977-81E2-BF732C375920"
+   },
+   "fm_id": "5"
+  },
+  "layout|Global_blank||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T20:42:52",
+    "modified_n": 2,
+    "uuid": "6325D611-BCB1-4BD1-B41E-F01F4AB45B11"
+   },
+   "fm_id": "1"
+  },
+  "layout|Lab Layout|layout_group|Lab Layouts||0|0": {
+   "calc_text": "Get ( LayoutName )",
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-08T14:42:17",
+    "modified_n": 15,
+    "uuid": "D3DD7B53-9523-4D5A-86AB-912250627105"
+   },
+   "fm_id": "10",
+   "grp": "Lab Layouts"
+  },
+  "layout|Lab Report|layout_group|Lab Layouts||0|0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-08T14:41:43",
+    "modified_n": 0,
+    "uuid": "BF097E6F-4521-4E0A-A2EE-EC32781DE9F1"
+   },
+   "fm_id": "11",
+   "grp": "Lab Layouts"
+  },
+  "layout|SAL__Sale_blank||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T20:42:52",
+    "modified_n": 1,
+    "uuid": "CCB2F0C7-1692-4F2E-AA34-F656D9AC270A"
+   },
+   "fm_id": "4"
+  },
+  "layout|Sale Entry||0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-07T20:42:52",
+    "modified_n": 2,
+    "uuid": "F5E765B8-2B74-4ED7-84EC-604858E9EB37"
+   },
+   "fm_id": "7"
+  },
+  "layout|WAT__Watch_blank||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T20:42:52",
+    "modified_n": 1,
+    "uuid": "6D46486C-19FC-4052-A1CE-6FFE99A64164"
+   },
+   "fm_id": "3"
+  },
+  "layout|Watch List||0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-07T20:42:52",
+    "modified_n": 2,
+    "uuid": "5049A8E8-7BD6-43D9-B3FF-B2DAD06CAA5C"
+   },
+   "fm_id": "6"
+  },
+  "privilege_set|[Data Entry Only]||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:02",
+    "modified_n": 0,
+    "uuid": "A347BB1D-D2FA-44B8-A178-FF2D2D97EA75"
+   },
+   "fm_id": "2"
+  },
+  "privilege_set|[Full Access]||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:02",
+    "modified_n": 0,
+    "uuid": "D600BA72-49BA-4740-936B-0729A9A8E6AC"
+   },
+   "fm_id": "1"
+  },
+  "privilege_set|[Read-Only Access]||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:02",
+    "modified_n": 0,
+    "uuid": "D37D7BE3-2335-4DB4-A60F-717CAE65340B"
+   },
+   "fm_id": "3"
+  },
+  "relationship|CUS__Customer :: CUS_SAL__Sale||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:18",
+    "modified_n": 0,
+    "predicates": [
+     {
+      "left": "CUS__Customer::ID",
+      "op": "Equal",
+      "right": "CUS_SAL__Sale::ID_Customer"
+     }
+    ],
+    "sides": [
+     {
+      "cascade_create": false,
+      "cascade_delete": false,
+      "side": "left",
+      "to": "CUS__Customer"
+     },
+     {
+      "cascade_create": false,
+      "cascade_delete": false,
+      "side": "right",
+      "to": "CUS_SAL__Sale"
+     }
+    ],
+    "uuid": "7DEE13D9-782B-4004-B7ED-D87FAD88F785"
+   },
+   "fm_id": "1"
+  },
+  "relationship|SAL__Sale :: SAL_CUS__Customer||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:18",
+    "modified_n": 0,
+    "predicates": [
+     {
+      "left": "SAL__Sale::ID_Customer",
+      "op": "Equal",
+      "right": "SAL_CUS__Customer::ID"
+     }
+    ],
+    "sides": [
+     {
+      "cascade_create": false,
+      "cascade_delete": false,
+      "side": "left",
+      "to": "SAL__Sale"
+     },
+     {
+      "cascade_create": false,
+      "cascade_delete": false,
+      "side": "right",
+      "to": "SAL_CUS__Customer"
+     }
+    ],
+    "uuid": "306AC5F0-97E3-48F7-864C-EBC873432CC3"
+   },
+   "fm_id": "4"
+  },
+  "relationship|SAL__Sale :: SAL_WAT__Watch||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:18",
+    "modified_n": 0,
+    "predicates": [
+     {
+      "left": "SAL__Sale::ID_Watch",
+      "op": "Equal",
+      "right": "SAL_WAT__Watch::ID"
+     }
+    ],
+    "sides": [
+     {
+      "cascade_create": false,
+      "cascade_delete": false,
+      "side": "left",
+      "to": "SAL__Sale"
+     },
+     {
+      "cascade_create": false,
+      "cascade_delete": false,
+      "side": "right",
+      "to": "SAL_WAT__Watch"
+     }
+    ],
+    "uuid": "1E2A4F16-D104-4D1D-BC0E-6480924F72AB"
+   },
+   "fm_id": "3"
+  },
+  "relationship|WAT__Watch :: WAT_SAL__Sale||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:18",
+    "modified_n": 0,
+    "predicates": [
+     {
+      "left": "WAT__Watch::ID",
+      "op": "Equal",
+      "right": "WAT_SAL__Sale::ID_Watch"
+     }
+    ],
+    "sides": [
+     {
+      "cascade_create": false,
+      "cascade_delete": false,
+      "side": "left",
+      "to": "WAT__Watch"
+     },
+     {
+      "cascade_create": false,
+      "cascade_delete": false,
+      "side": "right",
+      "to": "WAT_SAL__Sale"
+     }
+    ],
+    "uuid": "AC834385-388E-4D6C-BFFF-B006C33B34CF"
+   },
+   "fm_id": "2"
+  },
+  "script_group|Customer||0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-07T09:44:29",
+    "modified_n": 0,
+    "uuid": "7795EBA2-5914-4B4F-9A4E-E36A759EA5B5"
+   },
+   "fm_id": "4"
+  },
+  "script_group|Developer||0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-07T09:44:29",
+    "modified_n": 0,
+    "uuid": "D4FE9176-A33B-4045-B8B3-E77B4521C8F8"
+   },
+   "fm_id": "1"
+  },
+  "script_group|Hidden Folder||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T20:41:32",
+    "modified_n": 0,
+    "uuid": "B2DD01D4-8973-4BFC-AAF5-09828FE15411"
+   },
+   "fm_id": "18"
+  },
+  "script_group|Inner|script_group|Outer||0|0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-07T20:41:32",
+    "modified_n": 0,
+    "uuid": "BFD6E2D8-F580-4EC2-9978-B709C77ACB13"
+   },
+   "fm_id": "16",
+   "grp": "Outer"
+  },
+  "script_group|Outer||0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-07T20:41:32",
+    "modified_n": 0,
+    "uuid": "5AFC01CE-1D76-4FFD-942E-D7F5103F7608"
+   },
+   "fm_id": "14"
+  },
+  "script_group|Sale||0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-07T09:44:29",
+    "modified_n": 0,
+    "uuid": "BEACEFCC-5253-478F-B08B-7F5060CAD6EC"
+   },
+   "fm_id": "7"
+  },
+  "script_group|Triggers||0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-07T09:44:29",
+    "modified_n": 0,
+    "uuid": "0B0D9B60-4859-4EAE-BAA3-1DD8A20BF256"
+   },
+   "fm_id": "10"
+  },
+  "script_step|# (comment)|script|Caller||0|0": {
+   "extra_json": {
+    "step_text": "#One step per lab case",
+    "uuid": "35C6AAAB-4CDC-47C1-92EC-E246F7F658EE"
+   },
+   "fm_id": "89",
+   "seq": 1,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|Developer Notes|script_group|Developer||0|0|0": {
+   "extra_json": {
+    "step_text": "#PURPOSE: notes for the next developer. Never run; comments only.",
+    "uuid": "DE640293-0384-4CC5-9214-DD08A52B9FE4"
+   },
+   "fm_id": "89",
+   "grp": "Developer",
+   "seq": 1,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|Developer Notes|script_group|Developer||0|0|1": {
+   "extra_json": {
+    "step_text": "#PARAMETERS: every script takes one JSON object (JSONGetElement at the top, once).",
+    "uuid": "9F38C4DC-D86F-4368-B260-D5A125D2F1DB"
+   },
+   "fm_id": "89",
+   "grp": "Developer",
+   "seq": 2,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|Developer Notes|script_group|Developer||0|0|2": {
+   "extra_json": {
+    "step_text": "#RESULT: a JSON object with errorCode (0 on success), message and data. A user cancel returns errorCode -1 or the FileMaker code.",
+    "uuid": "29B3FF01-C3BC-41A9-B162-AE2D4748D52D"
+   },
+   "fm_id": "89",
+   "grp": "Developer",
+   "seq": 3,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|Developer Notes|script_group|Developer||0|0|3": {
+   "extra_json": {
+    "step_text": "#TRIGGERS: wrappers are named TRIGGER_...; set $$SCRIPT_TRIGGERS_OFF to True to suppress them.",
+    "uuid": "D7EB45F3-F9D6-45DA-B07C-A049FF4D6EED"
+   },
+   "fm_id": "89",
+   "grp": "Developer",
+   "seq": 4,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|Developer Notes|script_group|Developer||0|0|4": {
+   "extra_json": {
+    "step_text": "#PLUG-INS: none.",
+    "uuid": "4AAAB76F-D6F4-42B8-91FD-8EB567416626"
+   },
+   "fm_id": "89",
+   "grp": "Developer",
+   "seq": 5,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|Developer Notes|script_group|Developer||0|0|5": {
+   "extra_json": {
+    "step_text": "#HISTORY:",
+    "uuid": "636C84F4-EA94-4721-A1B3-9D4F9E468435"
+   },
+   "fm_id": "89",
+   "grp": "Developer",
+   "seq": 6,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|Developer Notes|script_group|Developer||0|0|6": {
+   "extra_json": {
+    "step_text": "#\t- Created: 2026-Oct-06 by the lab",
+    "uuid": "14116360-C190-4E84-8EA7-C7E520B3D0C7"
+   },
+   "fm_id": "89",
+   "grp": "Developer",
+   "seq": 7,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|Export SaXML||0|0": {
+   "extra_json": {
+    "step_text": "#Save this file as XML with analysis details next to itself, then close",
+    "uuid": "E5E0B190-0F14-4CD7-B395-66D904403178"
+   },
+   "fm_id": "89",
+   "seq": 1,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|Full Access Script|script_group|Outer||0|0|0": {
+   "extra_json": {
+    "step_text": "#Runs with full access",
+    "uuid": "59A4619B-E0BE-422D-91A0-97B0BE4C56C8"
+   },
+   "fm_id": "89",
+   "grp": "Outer",
+   "seq": 1,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|Hidden Script|script_group|Hidden Folder||0|0|0": {
+   "extra_json": {
+    "step_text": "#Not shown in the Scripts menu",
+    "uuid": "C95C5E76-A514-434E-94CB-CE005FD29BE9"
+   },
+   "fm_id": "89",
+   "grp": "Hidden Folder",
+   "seq": 1,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|Lab Mailer|script_group|Outer||0|0|0": {
+   "extra_json": {
+    "step_text": "#Send Mail with calcs in to, cc, subject and message",
+    "uuid": "E6B89739-88C8-46DE-BEC7-90F8194F02C2"
+   },
+   "fm_id": "89",
+   "grp": "Outer",
+   "seq": 1,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|Lab Related Window|script_group|Outer||0|0|0": {
+   "extra_json": {
+    "step_text": "#GTRR into a new card window, layout by calc",
+    "uuid": "33DE63B1-A1D3-4992-BFB7-4711388404FE"
+   },
+   "fm_id": "89",
+   "grp": "Outer",
+   "seq": 1,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|Menu Target|script_group|Outer||0|0|0": {
+   "extra_json": {
+    "step_text": "#Performed by the Lab Menu item",
+    "uuid": "E4EA4637-0DCC-476C-93D9-87C6822F8C09"
+   },
+   "fm_id": "89",
+   "grp": "Outer",
+   "seq": 1,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|New Customer|script_group|Customer||0|0|0": {
+   "extra_json": {
+    "step_text": "#PURPOSE: Opens a new customer record on Customer Detail.",
+    "uuid": "78B08E7D-F019-4843-9E13-8DFDB8010472"
+   },
+   "fm_id": "89",
+   "grp": "Customer",
+   "seq": 1,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|New Customer|script_group|Customer||0|0|1": {
+   "extra_json": {
+    "step_text": "#PARAMETERS: none",
+    "uuid": "40277BDF-CFEC-4BB9-A468-9B75713FB992"
+   },
+   "fm_id": "89",
+   "grp": "Customer",
+   "seq": 2,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|New Customer|script_group|Customer||0|0|2": {
+   "extra_json": {
+    "step_text": "#RESULT: nothing",
+    "uuid": "C846F119-5F62-430E-ABAC-C201A026D514"
+   },
+   "fm_id": "89",
+   "grp": "Customer",
+   "seq": 3,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|New Customer|script_group|Customer||0|0|3": {
+   "extra_json": {
+    "step_text": "#DEPENDENCIES: the layout Customer Detail",
+    "uuid": "65D0B1C7-EB64-43F2-B76A-846905C46838"
+   },
+   "fm_id": "89",
+   "grp": "Customer",
+   "seq": 4,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|New Customer|script_group|Customer||0|0|4": {
+   "extra_json": {
+    "step_text": "#HISTORY:",
+    "uuid": "EEB15CA7-F3A9-4C78-9C67-9E55FBC9FE4E"
+   },
+   "fm_id": "89",
+   "grp": "Customer",
+   "seq": 5,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|New Customer|script_group|Customer||0|0|5": {
+   "extra_json": {
+    "step_text": "#\t- Created: 2026-Oct-06 by the lab",
+    "uuid": "752C8AE9-F97E-4CCA-9FF3-2329FB061464"
+   },
+   "fm_id": "89",
+   "grp": "Customer",
+   "seq": 6,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|New Customer|script_group|Customer||0|0|6": {
+   "extra_json": {
+    "uuid": "9E1DC167-E479-4096-A684-64F1FEAE1243"
+   },
+   "fm_id": "89",
+   "grp": "Customer",
+   "seq": 7,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|New Customer|script_group|Customer||0|0|7": {
+   "extra_json": {
+    "uuid": "6B09C307-BEEE-4E2F-A881-E72D35DA37D9"
+   },
+   "fm_id": "89",
+   "grp": "Customer",
+   "seq": 13,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|Sell Watch ( watchId )|script_group|Sale||0|0|0": {
+   "extra_json": {
+    "step_text": "#PURPOSE: Records the sale of one watch in an off-screen window and returns the new sale.",
+    "uuid": "9B711C7C-FA0C-4BE6-9FB5-EFB2B6392DDF"
+   },
+   "fm_id": "89",
+   "grp": "Sale",
+   "seq": 1,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|Sell Watch ( watchId )|script_group|Sale||0|0|1": {
+   "extra_json": {
+    "step_text": "#PARAMETERS:",
+    "uuid": "266E84E5-43BC-463E-9D69-4425A1D91352"
+   },
+   "fm_id": "89",
+   "grp": "Sale",
+   "seq": 2,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|Sell Watch ( watchId )|script_group|Sale||0|0|2": {
+   "extra_json": {
+    "step_text": "#\t- watchId: the ID of the watch being sold, required",
+    "uuid": "35608DD7-CF87-41B6-9FCD-25C767E9A889"
+   },
+   "fm_id": "89",
+   "grp": "Sale",
+   "seq": 3,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|Sell Watch ( watchId )|script_group|Sale||0|0|3": {
+   "extra_json": {
+    "step_text": "#RESULT: JSON {errorCode, message, data: {saleId, price}}; errorCode 0 on success",
+    "uuid": "6A6EE69E-37EA-4BC0-934F-4973DAE7E1F7"
+   },
+   "fm_id": "89",
+   "grp": "Sale",
+   "seq": 4,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|Sell Watch ( watchId )|script_group|Sale||0|0|4": {
+   "extra_json": {
+    "step_text": "#DEPENDENCIES: the layout SAL__Sale_blank; the table occurrence SAL__Sale; the buoy SAL_WAT__Watch for the price lookup",
+    "uuid": "C40855BC-9539-4E1E-98B0-EE3A47767577"
+   },
+   "fm_id": "89",
+   "grp": "Sale",
+   "seq": 5,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|Sell Watch ( watchId )|script_group|Sale||0|0|5": {
+   "extra_json": {
+    "step_text": "#HISTORY:",
+    "uuid": "AF80469A-343E-4B72-B7B4-8ED764098AEF"
+   },
+   "fm_id": "89",
+   "grp": "Sale",
+   "seq": 6,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|Sell Watch ( watchId )|script_group|Sale||0|0|6": {
+   "extra_json": {
+    "step_text": "#\t- Created: 2026-Oct-06 by the lab",
+    "uuid": "5B045165-541E-4FD7-A193-242610223471"
+   },
+   "fm_id": "89",
+   "grp": "Sale",
+   "seq": 7,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|Sell Watch ( watchId )|script_group|Sale||0|0|7": {
+   "extra_json": {
+    "uuid": "A8C7970F-E30C-49F2-84CB-AB288B38F2F1"
+   },
+   "fm_id": "89",
+   "grp": "Sale",
+   "seq": 8,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|Sell Watch ( watchId )|script_group|Sale||0|0|8": {
+   "extra_json": {
+    "step_text": "#Work in an off-screen window on the blank layout, so the caller's window never moves",
+    "uuid": "A91A049E-493F-4C0C-9A72-C024EB487EBA"
+   },
+   "fm_id": "89",
+   "grp": "Sale",
+   "seq": 24,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|Sell Watch ( watchId )|script_group|Sale||0|0|9": {
+   "extra_json": {
+    "uuid": "9927D379-9CFF-427B-AF8C-537911F33712"
+   },
+   "fm_id": "89",
+   "grp": "Sale",
+   "seq": 36,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|TRIGGER_onFirstWindowOpen|script_group|Triggers||0|0|0": {
+   "extra_json": {
+    "step_text": "#PURPOSE: OnFirstWindowOpen wrapper: shows Customer Detail when the file opens.",
+    "uuid": "2800B1CD-2EB7-40D2-9D6C-EC4F8908A8B8"
+   },
+   "fm_id": "89",
+   "grp": "Triggers",
+   "seq": 1,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|TRIGGER_onFirstWindowOpen|script_group|Triggers||0|0|1": {
+   "extra_json": {
+    "step_text": "#PARAMETERS: none",
+    "uuid": "EFCA1BC0-0CFF-4FAE-93D8-40A62C4A8D5B"
+   },
+   "fm_id": "89",
+   "grp": "Triggers",
+   "seq": 2,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|TRIGGER_onFirstWindowOpen|script_group|Triggers||0|0|2": {
+   "extra_json": {
+    "step_text": "#RESULT: nothing",
+    "uuid": "F46430B2-9E94-4158-96F2-FEA84951E8B0"
+   },
+   "fm_id": "89",
+   "grp": "Triggers",
+   "seq": 3,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|TRIGGER_onFirstWindowOpen|script_group|Triggers||0|0|3": {
+   "extra_json": {
+    "step_text": "#DEPENDENCIES: file option OnFirstWindowOpen; the layout Customer Detail; the global $$SCRIPT_TRIGGERS_OFF",
+    "uuid": "D66B0E42-77EC-437B-830F-1F16C7DD688D"
+   },
+   "fm_id": "89",
+   "grp": "Triggers",
+   "seq": 4,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|TRIGGER_onFirstWindowOpen|script_group|Triggers||0|0|4": {
+   "extra_json": {
+    "step_text": "#HISTORY:",
+    "uuid": "035C47E3-7F27-4118-B9D2-5D7877B70FCF"
+   },
+   "fm_id": "89",
+   "grp": "Triggers",
+   "seq": 5,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|TRIGGER_onFirstWindowOpen|script_group|Triggers||0|0|5": {
+   "extra_json": {
+    "step_text": "#\t- Created: 2026-Oct-06 by the lab",
+    "uuid": "EEF317AC-5242-4E96-98E4-E58C2ACFA9CC"
+   },
+   "fm_id": "89",
+   "grp": "Triggers",
+   "seq": 6,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|TRIGGER_onFirstWindowOpen|script_group|Triggers||0|0|6": {
+   "extra_json": {
+    "uuid": "08A1190A-2C56-4FD8-B67A-16FC9917D175"
+   },
+   "fm_id": "89",
+   "grp": "Triggers",
+   "seq": 7,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|TRIGGER_onFirstWindowOpen|script_group|Triggers||0|0|7": {
+   "extra_json": {
+    "uuid": "9578C5A2-324E-4241-AF1E-C0ACAEB4EBD2"
+   },
+   "fm_id": "89",
+   "grp": "Triggers",
+   "seq": 15,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|TRIGGER_onLayoutEnter|script_group|Triggers||0|0|0": {
+   "extra_json": {
+    "step_text": "#Layout trigger OnLayoutEnter of Lab Layout",
+    "uuid": "0F2DE027-7244-43FE-8A45-EDE44AF24311"
+   },
+   "fm_id": "89",
+   "grp": "Triggers",
+   "seq": 1,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|TRIGGER_onObjectModify|script_group|Triggers||0|0|0": {
+   "extra_json": {
+    "step_text": "#Object trigger of the Name_First field on Lab Layout",
+    "uuid": "5B03EA76-5A0A-40D0-8575-AD53119F6B54"
+   },
+   "fm_id": "89",
+   "grp": "Triggers",
+   "seq": 1,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|TRIGGER_onPanelSwitch|script_group|Triggers||0|0|0": {
+   "extra_json": {
+    "step_text": "#Object trigger OnPanelSwitch of the tab control on Lab Layout",
+    "uuid": "B027F894-91F0-4C75-90B3-6D6B3BA61029"
+   },
+   "fm_id": "89",
+   "grp": "Triggers",
+   "seq": 1,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|TRIGGER_onRecordLoad|script_group|Triggers||0|0|0": {
+   "extra_json": {
+    "step_text": "#Layout trigger of Lab Layout",
+    "uuid": "33FE18DE-93A4-4D01-BFD2-BFC529AC1689"
+   },
+   "fm_id": "89",
+   "grp": "Triggers",
+   "seq": 1,
+   "step_type": "# (comment)"
+  },
+  "script_step|# (comment)|script|Target|script_group|Inner|script_group|Outer||0|0|0|0": {
+   "extra_json": {
+    "step_text": "#Called by Caller and by the Lab Layout button",
+    "uuid": "0FCE0F38-5D4B-40C5-A990-6536CA8541D4"
+   },
+   "fm_id": "89",
+   "grp": "Inner",
+   "seq": 1,
+   "step_type": "# (comment)"
+  },
+  "script_step|Allow User Abort|script|New Customer|script_group|Customer||0|0|0": {
+   "extra_json": {
+    "step_text": "Allow User Abort [ Off ]",
+    "uuid": "F1E212A2-63C0-47CC-BC81-32BC7E9AC3C6"
+   },
+   "fm_id": "85",
+   "grp": "Customer",
+   "seq": 8,
+   "step_type": "Allow User Abort"
+  },
+  "script_step|Allow User Abort|script|Sell Watch ( watchId )|script_group|Sale||0|0|0": {
+   "extra_json": {
+    "step_text": "Allow User Abort [ Off ]",
+    "uuid": "67462BDD-CEA7-4AFE-85B2-FD8B3DD3D50D"
+   },
+   "fm_id": "85",
+   "grp": "Sale",
+   "seq": 9,
+   "step_type": "Allow User Abort"
+  },
+  "script_step|Allow User Abort|script|TRIGGER_onFirstWindowOpen|script_group|Triggers||0|0|0": {
+   "extra_json": {
+    "step_text": "Allow User Abort [ Off ]",
+    "uuid": "2DF7F15F-4803-4FB4-8CF0-008C66880281"
+   },
+   "fm_id": "85",
+   "grp": "Triggers",
+   "seq": 8,
+   "step_type": "Allow User Abort"
+  },
+  "script_step|Close Window|script|Export SaXML||0|0": {
+   "extra_json": {
+    "step_text": "Close Window [ Current Window ]",
+    "uuid": "F1CCE88F-5EB2-4DBA-A0D6-F309AC1917E2"
+   },
+   "fm_id": "121",
+   "seq": 4,
+   "step_type": "Close Window"
+  },
+  "script_step|Close Window|script|Sell Watch ( watchId )|script_group|Sale||0|0|0": {
+   "extra_json": {
+    "step_text": "Close Window [ Current Window ]",
+    "uuid": "3304BFD3-644E-4BC2-B070-2F221CFBA8D4"
+   },
+   "fm_id": "121",
+   "grp": "Sale",
+   "seq": 34,
+   "step_type": "Close Window"
+  },
+  "script_step|Commit Transaction|script|Sell Watch ( watchId )|script_group|Sale||0|0|0": {
+   "extra_json": {
+    "step_text": "Commit Transaction",
+    "uuid": "2B027248-5804-473D-BC6B-DF92BA7E491F"
+   },
+   "fm_id": "206",
+   "grp": "Sale",
+   "seq": 30,
+   "step_type": "Commit Transaction"
+  },
+  "script_step|End If|script|Sell Watch ( watchId )|script_group|Sale||0|0|0": {
+   "extra_json": {
+    "step_text": "End If",
+    "uuid": "C5123E59-B39A-4C81-A872-A3538A20AF78"
+   },
+   "fm_id": "70",
+   "grp": "Sale",
+   "seq": 17,
+   "step_type": "End If"
+  },
+  "script_step|End If|script|Sell Watch ( watchId )|script_group|Sale||0|0|1": {
+   "extra_json": {
+    "step_text": "End If",
+    "uuid": "929043F1-4548-4658-925B-A362DAB90AAF"
+   },
+   "fm_id": "70",
+   "grp": "Sale",
+   "seq": 23,
+   "step_type": "End If"
+  },
+  "script_step|End If|script|TRIGGER_onFirstWindowOpen|script_group|Triggers||0|0|0": {
+   "extra_json": {
+    "step_text": "End If",
+    "uuid": "819E5CF9-B6BF-4ABE-8257-62625AA8E990"
+   },
+   "fm_id": "70",
+   "grp": "Triggers",
+   "seq": 12,
+   "step_type": "End If"
+  },
+  "script_step|Exit Script|script|New Customer|script_group|Customer||0|0|0": {
+   "calc_text": "\"\"",
+   "extra_json": {
+    "step_text": "Exit Script [ Result: \"\" ]",
+    "uuid": "8966E50F-ECFB-4529-825B-891C3A4D380E"
+   },
+   "fm_id": "103",
+   "grp": "Customer",
+   "seq": 12,
+   "step_type": "Exit Script"
+  },
+  "script_step|Exit Script|script|Sell Watch ( watchId )|script_group|Sale||0|0|0": {
+   "calc_text": "JSONSetElement ( \"{}\"\n\t; [ \"errorCode\" ; $errorCode ; JSONNumber ]\n\t; [ \"message\" ; $message ; JSONString ]\n\t; [ \"data\" ; $data ; JSONObject ]\n)",
+   "extra_json": {
+    "step_text": "Exit Script [ Result: JSONSetElement ( \"{}\"\n\t; [ \"errorCode\" ; $errorCode ; JSONNumber ]\n\t; [ \"message\" ; $message ; JSONString ]\n\t; [ \"data\" ; $data ; JSONObject ]\n) ]",
+    "uuid": "E92D7E29-7EA7-460C-B231-4D0AB66A392A"
+   },
+   "fm_id": "103",
+   "grp": "Sale",
+   "seq": 16,
+   "step_type": "Exit Script"
+  },
+  "script_step|Exit Script|script|Sell Watch ( watchId )|script_group|Sale||0|0|1": {
+   "calc_text": "JSONSetElement ( \"{}\"\n\t; [ \"errorCode\" ; $errorCode ; JSONNumber ]\n\t; [ \"message\" ; $message ; JSONString ]\n\t; [ \"data\" ; $data ; JSONObject ]\n)",
+   "extra_json": {
+    "step_text": "Exit Script [ Result: JSONSetElement ( \"{}\"\n\t; [ \"errorCode\" ; $errorCode ; JSONNumber ]\n\t; [ \"message\" ; $message ; JSONString ]\n\t; [ \"data\" ; $data ; JSONObject ]\n) ]",
+    "uuid": "7AB14BF7-D3F7-4CD8-8190-C4F3FC4F06EF"
+   },
+   "fm_id": "103",
+   "grp": "Sale",
+   "seq": 22,
+   "step_type": "Exit Script"
+  },
+  "script_step|Exit Script|script|Sell Watch ( watchId )|script_group|Sale||0|0|2": {
+   "calc_text": "JSONSetElement ( \"{}\"\n\t; [ \"errorCode\" ; $errorCode ; JSONNumber ]\n\t; [ \"message\" ; $message ; JSONString ]\n\t; [ \"data\" ; $data ; JSONObject ]\n)",
+   "extra_json": {
+    "step_text": "Exit Script [ Result: JSONSetElement ( \"{}\"\n\t; [ \"errorCode\" ; $errorCode ; JSONNumber ]\n\t; [ \"message\" ; $message ; JSONString ]\n\t; [ \"data\" ; $data ; JSONObject ]\n) ]",
+    "uuid": "59C3D6D7-2014-4B72-A3B6-FB29D62AEC82"
+   },
+   "fm_id": "103",
+   "grp": "Sale",
+   "seq": 35,
+   "step_type": "Exit Script"
+  },
+  "script_step|Exit Script|script|TRIGGER_onFirstWindowOpen|script_group|Triggers||0|0|0": {
+   "calc_text": "\"\"",
+   "extra_json": {
+    "step_text": "Exit Script [ Result: \"\" ]",
+    "uuid": "C14E92E8-442D-4257-885A-437ECB76E9D5"
+   },
+   "fm_id": "103",
+   "grp": "Triggers",
+   "seq": 11,
+   "step_type": "Exit Script"
+  },
+  "script_step|Exit Script|script|TRIGGER_onFirstWindowOpen|script_group|Triggers||0|0|1": {
+   "calc_text": "\"\"",
+   "extra_json": {
+    "step_text": "Exit Script [ Result: \"\" ]",
+    "uuid": "28AE01DA-D64F-4C10-913C-603074A24E5A"
+   },
+   "fm_id": "103",
+   "grp": "Triggers",
+   "seq": 14,
+   "step_type": "Exit Script"
+  },
+  "script_step|Go to Layout|script|Caller||0|0": {
+   "extra_json": {
+    "step_text": "Go to Layout [ \u201cWatch List\u201d (WAT__Watch) ]",
+    "uuid": "E19456A1-FB68-49BF-92D0-CC3B20C01826"
+   },
+   "fm_id": "6",
+   "seq": 10,
+   "step_type": "Go to Layout"
+  },
+  "script_step|Go to Layout|script|Caller||0|1": {
+   "calc_text": "\"Sale Entry\"",
+   "extra_json": {
+    "step_text": "Go to Layout [ \"Sale Entry\" ]",
+    "uuid": "18851FF1-B2D6-4F66-93A5-15C72174D2E9"
+   },
+   "fm_id": "6",
+   "seq": 11,
+   "step_type": "Go to Layout"
+  },
+  "script_step|Go to Layout|script|New Customer|script_group|Customer||0|0|0": {
+   "extra_json": {
+    "step_text": "Go to Layout [ \u201cCustomer Detail\u201d (CUS__Customer) ]",
+    "uuid": "43ABE197-57DE-49F3-8D41-7B09AA09FF1F"
+   },
+   "fm_id": "6",
+   "grp": "Customer",
+   "seq": 10,
+   "step_type": "Go to Layout"
+  },
+  "script_step|Go to Layout|script|TRIGGER_onFirstWindowOpen|script_group|Triggers||0|0|0": {
+   "extra_json": {
+    "step_text": "Go to Layout [ \u201cCustomer Detail\u201d (CUS__Customer) ]",
+    "uuid": "DF51A9CB-66A7-494E-B5F6-79C2EC200F3F"
+   },
+   "fm_id": "6",
+   "grp": "Triggers",
+   "seq": 13,
+   "step_type": "Go to Layout"
+  },
+  "script_step|Go to Related Record|script|Caller||0|0": {
+   "extra_json": {
+    "step_text": "Go to Related Record [ From table: \u201cCUS_SAL__Sale\u201d; Using layout: \u201cSale Entry\u201d (SAL__Sale) ]",
+    "uuid": "DD4AE3F0-F1F9-4AA4-AA21-BD1C19D0CC22"
+   },
+   "fm_id": "74",
+   "seq": 5,
+   "step_type": "Go to Related Record"
+  },
+  "script_step|Go to Related Record|script|Caller||0|1": {
+   "extra_json": {
+    "step_text": "Go to Related Record [ From table: <unknown>; Using layout: \u201cSale Entry\u201d (SAL__Sale) ]",
+    "uuid": "642C782C-B2B9-4736-9F31-5BB177CAAA96"
+   },
+   "fm_id": "74",
+   "seq": 6,
+   "step_type": "Go to Related Record"
+  },
+  "script_step|Go to Related Record|script|Caller||0|2": {
+   "extra_json": {
+    "step_text": "Go to Related Record [ From table: \u201cCUS_SAL__Sale\u201d; Using layout: \u201cSale Entry\u201d (SAL__Sale) ]\n[ New window ]",
+    "uuid": "62451C55-4657-4C90-A76D-E6CD826A00D7"
+   },
+   "fm_id": "74",
+   "seq": 7,
+   "step_type": "Go to Related Record"
+  },
+  "script_step|Go to Related Record|script|Lab Related Window|script_group|Outer||0|0|0": {
+   "calc_text": "\"Sale Entry\"\n\"Sale Entry\"",
+   "extra_json": {
+    "step_text": "Go to Related Record [ From table: \u201cWAT_SAL__Sale\u201d; Using layout: \"Sale Entry\" ]\n[ Show only related records; New window ]",
+    "uuid": "594D8E16-C626-4678-A18C-09BA1477351C"
+   },
+   "fm_id": "74",
+   "grp": "Outer",
+   "seq": 2,
+   "step_type": "Go to Related Record"
+  },
+  "script_step|If|script|Sell Watch ( watchId )|script_group|Sale||0|0|0": {
+   "calc_text": "IsEmpty ( $watchId )",
+   "extra_json": {
+    "step_text": "If [ IsEmpty ( $watchId ) ]",
+    "uuid": "5712044C-F854-4ABF-B8EB-DC7ADBB73E9E"
+   },
+   "fm_id": "68",
+   "grp": "Sale",
+   "seq": 13,
+   "step_type": "If"
+  },
+  "script_step|If|script|Sell Watch ( watchId )|script_group|Sale||0|0|1": {
+   "calc_text": "$soldCount > 0",
+   "extra_json": {
+    "step_text": "If [ $soldCount > 0 ]",
+    "uuid": "0E521362-1A87-4A26-91A4-D66CEC3E1A03"
+   },
+   "fm_id": "68",
+   "grp": "Sale",
+   "seq": 19,
+   "step_type": "If"
+  },
+  "script_step|If|script|TRIGGER_onFirstWindowOpen|script_group|Triggers||0|0|0": {
+   "calc_text": "$$SCRIPT_TRIGGERS_OFF",
+   "extra_json": {
+    "step_text": "If [ $$SCRIPT_TRIGGERS_OFF ]",
+    "uuid": "548E9D1F-FA7C-4020-83E6-571C7E93E1CB"
+   },
+   "fm_id": "68",
+   "grp": "Triggers",
+   "seq": 10,
+   "step_type": "If"
+  },
+  "script_step|New Record/Request|script|New Customer|script_group|Customer||0|0|0": {
+   "extra_json": {
+    "step_text": "New Record/Request",
+    "uuid": "43EFC3EF-625F-496D-8C80-FAB58EBFAEC8"
+   },
+   "fm_id": "7",
+   "grp": "Customer",
+   "seq": 11,
+   "step_type": "New Record/Request"
+  },
+  "script_step|New Record/Request|script|Sell Watch ( watchId )|script_group|Sale||0|0|0": {
+   "extra_json": {
+    "step_text": "New Record/Request",
+    "uuid": "902B6280-8536-4A1A-A380-69E37C3DFAD3"
+   },
+   "fm_id": "7",
+   "grp": "Sale",
+   "seq": 27,
+   "step_type": "New Record/Request"
+  },
+  "script_step|New Window|script|Sell Watch ( watchId )|script_group|Sale||0|0|0": {
+   "calc_text": "\"Sell Watch\"\n300\n400\n30000\n30000",
+   "extra_json": {
+    "step_text": "New Window [ Style: Document; Name: \"Sell Watch\"; Using layout: \u201cSAL__Sale_blank\u201d (SAL__Sale); Height: 300; Width: 400; Top: 30000; Left: 30000; Close: No; Minimize: No; Maximize: No; Resize: No ]",
+    "uuid": "9D5546BC-4FC1-4CB1-81A8-1E1DAE622A87"
+   },
+   "fm_id": "122",
+   "grp": "Sale",
+   "seq": 25,
+   "step_type": "New Window"
+  },
+  "script_step|Open Transaction|script|Sell Watch ( watchId )|script_group|Sale||0|0|0": {
+   "extra_json": {
+    "step_text": "Open Transaction [  ]",
+    "uuid": "B5E97046-9B72-4C08-BE94-01A18432BC15"
+   },
+   "fm_id": "205",
+   "grp": "Sale",
+   "seq": 26,
+   "step_type": "Open Transaction"
+  },
+  "script_step|Perform Script|script|Caller||0|0": {
+   "calc_text": "\"p\"",
+   "extra_json": {
+    "step_text": "Perform Script [ \u201cTarget\u201d; Parameter: \"p\" ]",
+    "uuid": "A202E4DC-2894-4A4C-9153-E351922BCC42"
+   },
+   "fm_id": "1",
+   "seq": 2,
+   "step_type": "Perform Script"
+  },
+  "script_step|Perform Script|script|Caller||0|1": {
+   "extra_json": {
+    "step_text": "Perform Script [ \u201c<unknown>\u201d ]",
+    "uuid": "E6348C9C-2A15-42C6-AF35-73F729E95649"
+   },
+   "fm_id": "1",
+   "seq": 3,
+   "step_type": "Perform Script"
+  },
+  "script_step|Save a Copy as XML|script|Export SaXML||0|0": {
+   "extra_json": {
+    "step_text": "Save a Copy as XML [  Window name:    ; Destination file: \u201c$path\u201d ; Include details for analysis tools ]",
+    "uuid": "64764DD7-844C-4230-BCAD-53BF11BDE4AA"
+   },
+   "fm_id": "3",
+   "seq": 3,
+   "step_type": "Save a Copy as XML"
+  },
+  "script_step|Send Mail|script|Lab Mailer|script_group|Outer||0|0|0": {
+   "calc_text": "CUS__Customer::ID & \"@example.com\"\n\"lab@example.com\"\n\"Sale for \" & _Str_FullName ( CUS__Customer::Name_First ; CUS__Customer::Name_Last )\n\"Sold on \" & CUS_SAL__Sale::SoldOn",
+   "extra_json": {
+    "step_text": "Send Mail [ Send via E-mail Client; To: CUS__Customer::ID & \"@example.com\"; CC: \"lab@example.com\"; Subject: \"Sale for \" & _Str_FullName ( CUS__Customer::Name_First ; CUS__Customer::Name_Last ); Message: \"Sold on \" & CUS_SAL__Sale::SoldOn ]\n[ No dialog ]",
+    "uuid": "9EBBF4A0-C0DD-4797-BB9A-1992EC4DD1FB"
+   },
+   "fm_id": "63",
+   "grp": "Outer",
+   "seq": 2,
+   "step_type": "Send Mail"
+  },
+  "script_step|Set Error Capture|script|New Customer|script_group|Customer||0|0|0": {
+   "extra_json": {
+    "step_text": "Set Error Capture [ On ]",
+    "uuid": "0F810A5C-FF77-4EE0-95EA-79777B7A8A28"
+   },
+   "fm_id": "86",
+   "grp": "Customer",
+   "seq": 9,
+   "step_type": "Set Error Capture"
+  },
+  "script_step|Set Error Capture|script|Sell Watch ( watchId )|script_group|Sale||0|0|0": {
+   "extra_json": {
+    "step_text": "Set Error Capture [ On ]",
+    "uuid": "D2101753-2B95-4F89-B07E-CC9B2870B5FA"
+   },
+   "fm_id": "86",
+   "grp": "Sale",
+   "seq": 10,
+   "step_type": "Set Error Capture"
+  },
+  "script_step|Set Error Capture|script|TRIGGER_onFirstWindowOpen|script_group|Triggers||0|0|0": {
+   "extra_json": {
+    "step_text": "Set Error Capture [ On ]",
+    "uuid": "E889101F-3670-45F5-AE01-A5C610B99746"
+   },
+   "fm_id": "86",
+   "grp": "Triggers",
+   "seq": 9,
+   "step_type": "Set Error Capture"
+  },
+  "script_step|Set Field|script|Caller||0|0": {
+   "calc_text": "\"Ada\"",
+   "extra_json": {
+    "step_text": "Set Field [ CUS__Customer::Name_First; \"Ada\" ]",
+    "uuid": "1E449F17-228F-420B-B0A2-CFD4FAFB5F4A"
+   },
+   "fm_id": "76",
+   "seq": 8,
+   "step_type": "Set Field"
+  },
+  "script_step|Set Field|script|Caller||0|1": {
+   "calc_text": "1",
+   "extra_json": {
+    "step_text": "Set Field [ <Table Missing>; 1 ]",
+    "uuid": "3C5F3A80-2573-4FFF-954A-4F3F6FC6A0C6"
+   },
+   "fm_id": "76",
+   "seq": 9,
+   "step_type": "Set Field"
+  },
+  "script_step|Set Field|script|Sell Watch ( watchId )|script_group|Sale||0|0|0": {
+   "calc_text": "$watchId",
+   "extra_json": {
+    "step_text": "Set Field [ SAL__Sale::ID_Watch; $watchId ]",
+    "uuid": "DB528196-53D9-479A-A888-6EFC154599E8"
+   },
+   "fm_id": "76",
+   "grp": "Sale",
+   "seq": 28,
+   "step_type": "Set Field"
+  },
+  "script_step|Set Field|script|Sell Watch ( watchId )|script_group|Sale||0|0|1": {
+   "calc_text": "Get ( CurrentDate )",
+   "extra_json": {
+    "step_text": "Set Field [ SAL__Sale::SoldOn; Get ( CurrentDate ) ]",
+    "uuid": "3139F2B6-7A6D-4F9C-83ED-8F011A0C3839"
+   },
+   "fm_id": "76",
+   "grp": "Sale",
+   "seq": 29,
+   "step_type": "Set Field"
+  },
+  "script_step|Set Variable|script|Caller||0|0": {
+   "calc_text": "1",
+   "extra_json": {
+    "disabled": true,
+    "step_text": "//  Set Variable [ $disabled; Value:1 ]",
+    "uuid": "8B2A8689-AE00-4A1A-B767-34BBF9D9A19E"
+   },
+   "fm_id": "141",
+   "seq": 4,
+   "step_type": "Set Variable"
+  },
+  "script_step|Set Variable|script|Export SaXML||0|0": {
+   "calc_text": "Substitute ( Get ( FilePath ) ; \".fmp12\" ; \"_saxml.xml\" )",
+   "extra_json": {
+    "step_text": "Set Variable [ $path; Value:Substitute ( Get ( FilePath ) ; \".fmp12\" ; \"_saxml.xml\" ) ]",
+    "uuid": "7CD77DFD-D1E7-4BA3-A93B-AD678A7E7E9A"
+   },
+   "fm_id": "141",
+   "seq": 2,
+   "step_type": "Set Variable"
+  },
+  "script_step|Set Variable|script|Sell Watch ( watchId )|script_group|Sale||0|0|0": {
+   "calc_text": "JSONGetElement ( Get ( ScriptParameter ) ; \"watchId\" )",
+   "extra_json": {
+    "step_text": "Set Variable [ $watchId; Value:JSONGetElement ( Get ( ScriptParameter ) ; \"watchId\" ) ]",
+    "uuid": "B673743E-3A5B-43FE-8B40-70475443732D"
+   },
+   "fm_id": "141",
+   "grp": "Sale",
+   "seq": 11,
+   "step_type": "Set Variable"
+  },
+  "script_step|Set Variable|script|Sell Watch ( watchId )|script_group|Sale||0|0|1": {
+   "calc_text": "\"{}\"",
+   "extra_json": {
+    "step_text": "Set Variable [ $data; Value:\"{}\" ]",
+    "uuid": "12CD41FB-D556-44EB-BEFD-8B2AD5D8A7DE"
+   },
+   "fm_id": "141",
+   "grp": "Sale",
+   "seq": 12,
+   "step_type": "Set Variable"
+  },
+  "script_step|Set Variable|script|Sell Watch ( watchId )|script_group|Sale||0|0|2": {
+   "calc_text": "-1",
+   "extra_json": {
+    "step_text": "Set Variable [ $errorCode; Value:-1 ]",
+    "uuid": "736BEEAA-78AC-4074-A52F-25084CC0C38C"
+   },
+   "fm_id": "141",
+   "grp": "Sale",
+   "seq": 14,
+   "step_type": "Set Variable"
+  },
+  "script_step|Set Variable|script|Sell Watch ( watchId )|script_group|Sale||0|0|3": {
+   "calc_text": "\"No watchId in the parameter\"",
+   "extra_json": {
+    "step_text": "Set Variable [ $message; Value:\"No watchId in the parameter\" ]",
+    "uuid": "F34A9F48-26E8-4007-837B-7A75CBD131C9"
+   },
+   "fm_id": "141",
+   "grp": "Sale",
+   "seq": 15,
+   "step_type": "Set Variable"
+  },
+  "script_step|Set Variable|script|Sell Watch ( watchId )|script_group|Sale||0|0|4": {
+   "calc_text": "ExecuteSQL ( \"SELECT COUNT(*) FROM SAL__Sale WHERE ID_Watch = ?\" ; \"\" ; \"\" ; $watchId )",
+   "extra_json": {
+    "step_text": "Set Variable [ $soldCount; Value:ExecuteSQL ( \"SELECT COUNT(*) FROM SAL__Sale WHERE ID_Watch = ?\" ; \"\" ; \"\" ; $watchId ) ]",
+    "uuid": "F1DB6BD6-7E7B-4049-BA89-2F7A3FA19E66"
+   },
+   "fm_id": "141",
+   "grp": "Sale",
+   "seq": 18,
+   "step_type": "Set Variable"
+  },
+  "script_step|Set Variable|script|Sell Watch ( watchId )|script_group|Sale||0|0|5": {
+   "calc_text": "-2",
+   "extra_json": {
+    "step_text": "Set Variable [ $errorCode; Value:-2 ]",
+    "uuid": "A06FDD60-81D7-4C7C-922A-EDBD48E7EDFC"
+   },
+   "fm_id": "141",
+   "grp": "Sale",
+   "seq": 20,
+   "step_type": "Set Variable"
+  },
+  "script_step|Set Variable|script|Sell Watch ( watchId )|script_group|Sale||0|0|6": {
+   "calc_text": "\"This watch is already sold\"",
+   "extra_json": {
+    "step_text": "Set Variable [ $message; Value:\"This watch is already sold\" ]",
+    "uuid": "5D108FA7-D70A-445B-92B1-98BC9D7C6400"
+   },
+   "fm_id": "141",
+   "grp": "Sale",
+   "seq": 21,
+   "step_type": "Set Variable"
+  },
+  "script_step|Set Variable|script|Sell Watch ( watchId )|script_group|Sale||0|0|7": {
+   "calc_text": "Get ( LastError )",
+   "extra_json": {
+    "step_text": "Set Variable [ $errorCode; Value:Get ( LastError ) ]",
+    "uuid": "87B2D4D9-9D40-4CF8-8424-FF68A45584A5"
+   },
+   "fm_id": "141",
+   "grp": "Sale",
+   "seq": 31,
+   "step_type": "Set Variable"
+  },
+  "script_step|Set Variable|script|Sell Watch ( watchId )|script_group|Sale||0|0|8": {
+   "calc_text": "Get ( LastErrorDetail )",
+   "extra_json": {
+    "step_text": "Set Variable [ $message; Value:Get ( LastErrorDetail ) ]",
+    "uuid": "CF38C990-BBB8-4424-A046-AC38464A1672"
+   },
+   "fm_id": "141",
+   "grp": "Sale",
+   "seq": 32,
+   "step_type": "Set Variable"
+  },
+  "script_step|Set Variable|script|Sell Watch ( watchId )|script_group|Sale||0|0|9": {
+   "calc_text": "JSONSetElement ( \"{}\"\n\t; [ \"saleId\" ; SAL__Sale::ID ; JSONString ]\n\t; [ \"price\" ; SAL__Sale::Price ; JSONNumber ]\n)",
+   "extra_json": {
+    "step_text": "Set Variable [ $data; Value:JSONSetElement ( \"{}\"\n\t; [ \"saleId\" ; SAL__Sale::ID ; JSONString ]\n\t; [ \"price\" ; SAL__Sale::Price ; JSONNumber ]\n) ]",
+    "uuid": "FD664D68-A5F3-450C-A0D4-4FDC14C591FF"
+   },
+   "fm_id": "141",
+   "grp": "Sale",
+   "seq": 33,
+   "step_type": "Set Variable"
+  },
+  "script_step|Sort Records|script|Caller||0|0": {
+   "extra_json": {
+    "step_text": "Sort Records [  ]\n[ No dialog ]",
+    "uuid": "1DF44D39-0ADE-4DA0-9718-4FE76BC5DE83"
+   },
+   "fm_id": "39",
+   "seq": 12,
+   "step_type": "Sort Records"
+  },
+  "script|Caller||0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-07T20:41:58",
+    "modified_n": 0,
+    "uuid": "3EEABA8B-12AC-4E3E-B5D3-4BC1588EC839"
+   },
+   "fm_id": "26"
+  },
+  "script|Developer Notes|script_group|Developer||0|0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-07T20:42:41",
+    "modified_n": 1,
+    "uuid": "472DAA60-D930-43C2-AEAC-AA06FBB9C794"
+   },
+   "fm_id": "3",
+   "grp": "Developer"
+  },
+  "script|Export SaXML||0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-07T16:08:35",
+    "modified_n": 0,
+    "uuid": "DC4520E4-D258-4DC5-83FC-A71797E6C3D6"
+   },
+   "fm_id": "13"
+  },
+  "script|Full Access Script|script_group|Outer||0|0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-07T20:41:58",
+    "modified_n": 0,
+    "run_full_access": true,
+    "uuid": "F516A6A6-234D-4ACB-84AB-8C4F2859D312"
+   },
+   "fm_id": "23",
+   "grp": "Outer"
+  },
+  "script|Hidden Script|script_group|Hidden Folder||0|0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T20:41:58",
+    "modified_n": 0,
+    "uuid": "35A07854-C6C6-4CBC-8321-E251A5925285"
+   },
+   "fm_id": "22",
+   "grp": "Hidden Folder"
+  },
+  "script|Lab Mailer|script_group|Outer||0|0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-08T14:42:30",
+    "modified_n": 0,
+    "uuid": "2968406F-2E08-4C99-AC6A-047713D53E7F"
+   },
+   "fm_id": "30",
+   "grp": "Outer"
+  },
+  "script|Lab Related Window|script_group|Outer||0|0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-08T14:42:33",
+    "modified_n": 0,
+    "uuid": "6AC34486-D9F9-47C0-9A48-79A0B1D2B874"
+   },
+   "fm_id": "31",
+   "grp": "Outer"
+  },
+  "script|Menu Target|script_group|Outer||0|0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-08T14:39:06",
+    "modified_n": 0,
+    "uuid": "59A9264B-2AF4-4685-B28A-2106BEEFC7EC"
+   },
+   "fm_id": "29",
+   "grp": "Outer"
+  },
+  "script|New Customer|script_group|Customer||0|0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-07T20:42:41",
+    "modified_n": 1,
+    "uuid": "FF0AE125-8848-4370-AA33-3D6C980A234E"
+   },
+   "fm_id": "6",
+   "grp": "Customer"
+  },
+  "script|Sell Watch ( watchId )|script_group|Sale||0|0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-07T20:42:41",
+    "modified_n": 1,
+    "uuid": "7884EEFA-506E-4DD1-8339-ABF23427B083"
+   },
+   "fm_id": "9",
+   "grp": "Sale"
+  },
+  "script|TRIGGER_onFirstWindowOpen|script_group|Triggers||0|0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-07T20:42:41",
+    "modified_n": 1,
+    "uuid": "43457F5A-7DB0-4C18-ADFD-7B7AF798A642"
+   },
+   "fm_id": "12",
+   "grp": "Triggers"
+  },
+  "script|TRIGGER_onLayoutEnter|script_group|Triggers||0|0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-08T14:39:06",
+    "modified_n": 0,
+    "uuid": "4782A9BF-F7EC-46BF-9651-8F1415D4E97B"
+   },
+   "fm_id": "27",
+   "grp": "Triggers"
+  },
+  "script|TRIGGER_onObjectModify|script_group|Triggers||0|0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-07T20:41:58",
+    "modified_n": 0,
+    "uuid": "96C0B727-31EE-40C5-B66F-B367CF5B05D4"
+   },
+   "fm_id": "25",
+   "grp": "Triggers"
+  },
+  "script|TRIGGER_onPanelSwitch|script_group|Triggers||0|0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-08T14:39:06",
+    "modified_n": 0,
+    "uuid": "E9AD45C1-0F98-4A14-A40B-DB6DE6DD2C51"
+   },
+   "fm_id": "28",
+   "grp": "Triggers"
+  },
+  "script|TRIGGER_onRecordLoad|script_group|Triggers||0|0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-07T20:41:58",
+    "modified_n": 0,
+    "uuid": "6D5E60DC-3707-4E2D-8D69-04E026939645"
+   },
+   "fm_id": "24",
+   "grp": "Triggers"
+  },
+  "script|Target|script_group|Inner|script_group|Outer||0|0|0": {
+   "extra_json": {
+    "in_menu": true,
+    "modified_at": "2026-10-07T20:41:58",
+    "modified_n": 0,
+    "uuid": "73E024C5-3E21-46CA-AEE3-79FA40331B71"
+   },
+   "fm_id": "20",
+   "grp": "Inner"
+  },
+  "table_occurrence|CUS_SAL__Sale||0": {
+   "base_table": "SAL__Sale",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:18",
+    "modified_n": 1,
+    "uuid": "A264B529-CA3C-4FF1-9561-1BB8FDDD0B4F"
+   },
+   "fm_id": "1065093"
+  },
+  "table_occurrence|CUS__Customer||0": {
+   "base_table": "CUS__Customer",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:18",
+    "modified_n": 2,
+    "uuid": "305ECC15-ADD2-4467-8378-3D41FB901B87"
+   },
+   "fm_id": "1065090"
+  },
+  "table_occurrence|Global||0": {
+   "base_table": "Global",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:18",
+    "modified_n": 2,
+    "uuid": "01299073-4792-4A9F-8603-48B775E24FBE"
+   },
+   "fm_id": "1065089"
+  },
+  "table_occurrence|SAL_CUS__Customer||0": {
+   "base_table": "CUS__Customer",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:18",
+    "modified_n": 1,
+    "uuid": "638CDB2B-540D-4C8F-91A5-3278E5EEA589"
+   },
+   "fm_id": "1065096"
+  },
+  "table_occurrence|SAL_WAT__Watch||0": {
+   "base_table": "WAT__Watch",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:18",
+    "modified_n": 1,
+    "uuid": "AFC98EF6-5B96-4D05-A94E-977B061F88FD"
+   },
+   "fm_id": "1065095"
+  },
+  "table_occurrence|SAL__Sale||0": {
+   "base_table": "SAL__Sale",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:18",
+    "modified_n": 3,
+    "uuid": "0A348502-C291-4142-9545-F286D5161185"
+   },
+   "fm_id": "1065092"
+  },
+  "table_occurrence|WAT_SAL__Sale||0": {
+   "base_table": "SAL__Sale",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:18",
+    "modified_n": 1,
+    "uuid": "32A57F52-1336-43AE-B543-D4C6A2BBDEA2"
+   },
+   "fm_id": "1065094"
+  },
+  "table_occurrence|WAT__Watch||0": {
+   "base_table": "WAT__Watch",
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:18",
+    "modified_n": 2,
+    "uuid": "1D3CB119-A26E-4A66-A308-B887FD7D7479"
+   },
+   "fm_id": "1065091"
+  },
+  "theme|Apex Blue||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T09:44:02",
+    "modified_n": 0,
+    "uuid": "00F8462D-53A8-48AD-B699-F4597DCAA021"
+   },
+   "fm_id": "01"
+  },
+  "value_list|Brand||0": {
+   "extra_json": {
+    "custom_values": [
+     "Rolex",
+     "Omega",
+     "Patek Philippe",
+     "Audemars Piguet",
+     "Vacheron Constantin"
+    ],
+    "modified_at": "2026-10-07T09:44:11",
+    "modified_n": 0,
+    "source": "Custom",
+    "uuid": "53F5CCC3-E480-4A8A-92D1-EDF71ECCF81A"
+   },
+   "fm_id": "1"
+  },
+  "value_list|CountryCode||0": {
+   "extra_json": {
+    "custom_values": [
+     "BE",
+     "NL",
+     "FR",
+     "DE",
+     "LU"
+    ],
+    "modified_at": "2026-10-07T09:44:11",
+    "modified_n": 0,
+    "source": "Custom",
+    "uuid": "9AB4D663-47EF-45AB-A19A-BB5CD7654182"
+   },
+   "fm_id": "2"
+  },
+  "value_list|SalesOfCustomer||0": {
+   "extra_json": {
+    "modified_at": "2026-10-07T20:41:32",
+    "modified_n": 0,
+    "primary": {
+     "field": "CUS_SAL__Sale::ID",
+     "show": true,
+     "sort": true
+    },
+    "secondary": {
+     "field": "CUS_SAL__Sale::SoldOn",
+     "show": false,
+     "sort": false
+    },
+    "show_related": true,
+    "source": "Field",
+    "uuid": "7D728939-3EFE-4F6E-AE1F-CC569B9214B5"
+   },
+   "fm_id": "3"
+  }
+ },
  "entity_counts": {
   "account": 2,
   "base_table": 4,
