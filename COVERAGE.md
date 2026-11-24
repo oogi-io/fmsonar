@@ -321,7 +321,9 @@ message that names the file and what to do:
     and does not count), `ValueListCatalog` with a value list reference,
     `CustomFunctionsCatalog` with a custom function in a calculation,
     `ExternalDataSourceCatalog` with an external table occurrence or a data
-    source reference.
+    source reference that names a catalog entry (an id other than 0: Import
+    Records writes one for a file on disk, without an id, and a step whose
+    data source is gone keeps id 0; neither counts).
 
   Not detectable: a `-catalog_list` export that names every section above but
   leaves out `RelationshipCatalog`, `CustomMenuCatalog` or

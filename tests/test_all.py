@@ -5272,11 +5272,11 @@ class TestSaXMLPartialExport(unittest.TestCase):
                 self.assertIn(el, msg)
                 self.assertIn("-catalog_list", msg)
 
-    def cut_lab3(self, name, *elements):
+    def cut_lab3(self, name, *elements, src=LAB3):
         """Lab v3 without the named sections: what FMDeveloperTool 26.0.1
         writes for a -catalog_list naming every catalog but those
         (measured: ScriptCatalog drops StepsForScripts too)."""
-        with open(LAB3, encoding="utf-8") as f:
+        with open(src, encoding="utf-8") as f:
             text = f.read()
         for el in elements:
             self.assertEqual(text.count(f"<{el}"), 1)
@@ -5372,6 +5372,44 @@ class TestSaXMLPartialExport(unittest.TestCase):
         path = self.synthetic("unset.xml", "ScriptCatalog",
                               self.LAYOUT.format(inner=inner))
         build(path, os.path.join(self.tmp, "unset.db"))
+
+    # A script of one step whose one parameter is a data source: the shape
+    # of Open File and Close File in the exports at hand
+    STEP = ('<ScriptCatalog><Script id="1" name="S"/></ScriptCatalog>'
+            '<StepsForScripts><Script><ScriptReference id="1" name="S"/><ObjectList>'
+            '<Step index="0" id="34" name="Close File" enable="True">'
+            '<ParameterValues membercount="1"><Parameter type="DataSourceReference">'
+            '{ref}</Parameter></ParameterValues></Step>'
+            '</ObjectList></Script></StepsForScripts>')
+
+    def test_step_on_a_data_source_needs_the_data_sources(self):
+        # The control for the two cases below: a step that names an entry
+        # of the catalog (an id other than 0), no external table occurrence
+        ref = '<DataSourceReference id="1" name="Sat" UUID="U"></DataSourceReference>'
+        msg = self.refused(self.synthetic(
+            "dsref.xml", "ExternalDataSourceCatalog", self.STEP.format(ref=ref)))
+        self.assertIn("ExternalDataSourceCatalog", msg)
+        self.assertIn("data sources", msg)
+
+    def test_import_records_is_not_a_missing_catalog(self):
+        # Import Records writes a DataSourceReference that names a file on
+        # disk (fileType, no id), not an entry of the catalog. Lab v4
+        # without its one data source is what FMDeveloperTool 26.0.1 wrote
+        # before that source was added (measured: no
+        # ExternalDataSourceCatalog element), and it was refused as partial
+        with open(LAB4, encoding="utf-8") as f:
+            self.assertIn('<DataSourceReference fileType="TABS"', f.read())
+        path = self.cut_lab3("import.xml", "ExternalDataSourceCatalog", src=LAB4)
+        self.assertGreater(build(path, os.path.join(self.tmp, "import.db"))["_refs"], 0)
+
+    def test_dropped_data_source_slot_is_not_a_missing_catalog(self):
+        # A step whose data source is gone keeps its name under id 0
+        # (measured on a real export: Close File and Re-Login, the name in
+        # no catalog entry): it names no entry of the catalog
+        ref = '<DataSourceReference id="0" name="Gone"></DataSourceReference>'
+        path = self.synthetic("gone.xml", "ExternalDataSourceCatalog",
+                              self.STEP.format(ref=ref))
+        build(path, os.path.join(self.tmp, "gone.db"))
 
     def test_absent_catalog_without_references_builds(self):
         # A whole export of a file with no scripts, value lists or custom

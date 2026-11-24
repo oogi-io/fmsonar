@@ -507,13 +507,16 @@ class _InfoPass(xml.sax.ContentHandler):
         """Record the kinds outside DDR_INFO that need their catalog. A
         script reference after a DataSourceReference sibling (a cross-file
         Perform Script) names another file's script; an unset slot (id 0,
-        no name) names none."""
+        no name) names none. A DataSourceReference names a catalog entry
+        only by an id other than 0: Import Records writes one for a file on
+        disk (fileType, no id), a step whose source is gone keeps id 0."""
         ds = self._ds_child
         ds.append(False)
         if name == "DataSourceReference":
             if len(ds) >= 2:
                 ds[-2] = True
-            self.kinds.add("data_source")
+            if attrs.get("id") not in (None, "0"):
+                self.kinds.add("data_source")
         elif name == "ScriptReference":
             if not (len(ds) >= 2 and ds[-2]) and (
                     attrs.get("name") or attrs.get("id") not in (None, "0")):
