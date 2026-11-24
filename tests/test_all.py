@@ -13,6 +13,7 @@ Run from the repo root:  python3 -m unittest discover tests -v
 Regenerate the snapshot:  UPDATE_SNAPSHOT=1 python3 -m unittest discover tests
 """
 
+import gc
 import json
 import os
 import shutil
@@ -4795,6 +4796,11 @@ class TestSourceFormat(unittest.TestCase):
         self.assertNotIn("--force", err.getvalue())
         self.assertIn("Rebuild:", str(cm.exception))
         self.assertNotIn("--force", str(cm.exception))
+        # A command leaves closing its connection to the end of the process;
+        # CPython frees an unclosed one only at a collection, and Windows
+        # does not delete a file that is still open
+        del cm
+        gc.collect()
         os.remove(stale)
         # A source touched after the build
         d = tempfile.mkdtemp(prefix="fmddr_srcnew_")
@@ -6704,13 +6710,15 @@ class TestListAndSplashLocations(unittest.TestCase):
     """v1.16.1: `list` reads the current folder and points at the legacy cache
     only when the folder has no fmsonar database; the splash counts fmsonar
     databases only and says when the installed skill is older than the
-    package. HOME is a temp dir throughout, so the real ~/.fmsonar and
-    ~/.claude are never read."""
+    package. The home folder is a temp dir throughout (HOME, and USERPROFILE
+    for Windows, where expanduser does not read HOME), so the real ~/.fmsonar
+    and ~/.claude are never read."""
 
     def setUp(self):
         self.home = tempfile.mkdtemp(prefix="fmddr_home_")
         self.cwd = tempfile.mkdtemp(prefix="fmddr_cwd_")
-        self.env = mock.patch.dict(os.environ, {"HOME": self.home})
+        self.env = mock.patch.dict(os.environ, {"HOME": self.home,
+                                                "USERPROFILE": self.home})
         self.env.start()
         self.old_cwd = os.getcwd()
         os.chdir(self.cwd)
